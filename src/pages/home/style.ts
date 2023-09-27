@@ -11,6 +11,7 @@ export const SubContainer = styled.div`
   width: 70vw;
   div h3{
     margin-left: 30px;
+    font-family: 'Inter';
     font-size: 1.4rem;
   }
 `;
@@ -28,13 +29,10 @@ export const ButtonRegisterAClient = styled.button`
   width: 200px;
   height: 40px;
   margin-left: 50px;
-  background-color: rgba(6, 142, 244, 0.8);
+  background-color: rgb(244, 106, 53);
   cursor: pointer;
   color: #fff;
   font-family: roboto;
   font-size: 0.9rem;
   border:none;
-  &:hover{
-    background-color: rgba(6, 142, 244, 909);
-  }
 `

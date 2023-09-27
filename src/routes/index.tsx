@@ -3,6 +3,7 @@ import { Global } from '../style/global'
 import { PageDefault } from '../pages/pageDefault'
 import { HomePage } from '../pages/home'
 import { ClientIdComponent } from '../pages/clientid'
+import { AddClient } from '../pages/addClient'
 
 export const AppRoutes = () => {
     return(
@@ -14,6 +15,7 @@ export const AppRoutes = () => {
          />
          <Route path='/dashboard' element={<PageDefault />}>
           <Route path='/dashboard' element={<HomePage />}/>
+          <Route path='/dashboard/client/new' element={<AddClient />}/>
           <Route path='/dashboard/client/:id' element={<ClientIdComponent />}/>
          </Route>
         </Routes>
