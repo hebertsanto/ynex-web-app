@@ -7,7 +7,6 @@ import axios from "axios";
 export const AddClient: React.FC = () => {
   
     type FormData = {
-        id: 1,
         name: string,
         email: string,
         cep: string,
@@ -24,7 +23,7 @@ export const AddClient: React.FC = () => {
     const handleAddClient: SubmitHandler<FormData> = (data) => {
         console.log(data);
         if (data) {
-            alert('faz o post')
+            alert('faz o post pra api que ainda vou criar')
         }
     }
 
@@ -49,12 +48,13 @@ export const AddClient: React.FC = () => {
         if(cep.length === 8){
             getACep(String(cep))
         }
+        setAdress('')
     }, [cep])
 
     return (
         <Container>
             <FormContainer>
-                <TitleComponent>register a client</TitleComponent>
+                <TitleComponent>register a new client</TitleComponent>
                 <Form onSubmit={handleSubmit(handleAddClient)}>
                     <div>
                         <label htmlFor="name">name</label>
@@ -116,7 +116,7 @@ export const AddClient: React.FC = () => {
                     </div>
                     <Button
                         width="100%"
-                        height="50px"
+                        height="60px"
                         type="submit">register</Button>
                 </Form>
             </FormContainer>

@@ -10,7 +10,7 @@ export const HeaderStyle = styled.header`
   border-bottom: 1px solid gainsboro;
 
   div p{
-    font-size:2rem;
+    font-size:1rem;
   }
 `;
 
@@ -18,12 +18,11 @@ export const NavLinks = styled.ul`
  display: flex;
  align-items: center;
  gap: 20px;
-
  li{
     list-style: none;
     a{
         color: black;
-        text-decoration:none;
+        text-decoration:underline;
     }
  }
 `;

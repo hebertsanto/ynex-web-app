@@ -22,9 +22,13 @@ div{
     border: 1px solid gainsboro;
     outline: none;
     padding-left: 15px;
-    &:focus{
-        border: 2px solid rgb(244, 106, 53);
+    &:hover{
+      border: 1px solid gray;
     }
+    &:focus{
+        border: 2px solid rgba(24, 120, 231, 0.8);
+    }
+
  }
  div label{
   font-size: 1rem;
@@ -43,7 +47,7 @@ export const Button = styled.button<Button>`
  width: ${props => props.width};
  margin-top: 10px;
  height:${props => props.height} ;
- background-color: rgb(244, 106, 53);
+ background-color:  rgba(24, 120, 231, 0.8);
  color: #fff;
  border: none;
  cursor: pointer;

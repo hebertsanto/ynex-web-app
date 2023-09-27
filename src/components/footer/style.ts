@@ -6,4 +6,5 @@ export const FooterContainer = styled.footer`
    height: 8vh;
    align-items:center;
    justify-content:center;
+   border-top: 1px solid rgba(230,230,230,900);
 `;

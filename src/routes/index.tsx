@@ -17,6 +17,7 @@ export const AppRoutes = () => {
           <Route path='/dashboard' element={<HomePage />}/>
           <Route path='/dashboard/client/new' element={<AddClient />}/>
           <Route path='/dashboard/client/:id' element={<ClientIdComponent />}/>
+          <Route path='*' element={<div>page not found</div>}/>
          </Route>
         </Routes>
         <Global />

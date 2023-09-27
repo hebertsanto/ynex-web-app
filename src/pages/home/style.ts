@@ -8,7 +8,7 @@ export const SubContainer = styled.div`
   display: flex;
   margin: 20px auto;
   justify-content:center;
-  width: 70vw;
+  width: 100vw;
   div p{
     margin-left: 30px;
     font-family: 'Inter';
@@ -26,14 +26,14 @@ export const Search = styled.input`
   outline: none;
 
   &:focus{
-    border: 1px solid rgb(244, 106, 53);
+    border: 1px solid rgba(0, 0, 0, 0.8);;
   }
 `;
 export const ButtonRegisterAClient = styled.button`
   width: 200px;
   height: 40px;
   margin-left: 50px;
-  background-color: rgb(244, 106, 53);
+  background-color:  rgba(24, 120, 231, 0.8);
   cursor: pointer;
   color: #fff;
   font-family: roboto;

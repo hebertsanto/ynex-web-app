@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 export const TableClientsContainer = styled.div`
   padding:30px;
+  margin-top: 5px;
+  width: 70vw;
 `;
 
 export const Table = styled.table`
- width: 1000px;
+ width: 100%;
  font-size: 0.9rem;
  padding: 0.9rem;
  border: 1px solid gainsboro;
