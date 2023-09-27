@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ButtonRegisterAClient, Container, Search, SubContainer } from "./style";
 import { Clients } from "../clients";
 
