@@ -5,16 +5,12 @@ import { clientsMock } from "../clients";
 export const ClientIdComponent : React.FC = () => {
     const { id } = useParams();
 
-   const product = clientsMock.find((product) => product.id === Number(id));
-  
+   const client = clientsMock.find((client) => client.id === Number(id));
+   
+   console.log(client)
     return(
         <div>
-            <h1>
-                client : {product?.name}
-                <div>
-                    data client
-                </div>
-            </h1>
+           pagina cliente
         </div>
     )
 }

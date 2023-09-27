@@ -9,10 +9,10 @@ export const SubContainer = styled.div`
   margin: 20px auto;
   justify-content:center;
   width: 70vw;
-  div h3{
+  div p{
     margin-left: 30px;
     font-family: 'Inter';
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 `;
 
@@ -23,7 +23,11 @@ export const Search = styled.input`
   border: 1px solid gainsboro;
   margin-top: 10px;
   padding-left: 10px;
-  border-radius: 5px;
+  outline: none;
+
+  &:focus{
+    border: 1px solid rgb(244, 106, 53);
+  }
 `;
 export const ButtonRegisterAClient = styled.button`
   width: 200px;

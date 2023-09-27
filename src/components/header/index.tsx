@@ -5,7 +5,7 @@ export const Header : React.FC = () => {
     return(
         <HeaderStyle>
             <div>
-              <h1>ynex</h1>
+               <p>ynex</p>
             </div>
           <div>
            <NavLinks>

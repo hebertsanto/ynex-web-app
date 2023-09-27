@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => {
         <Container>
             <SubContainer>
              <div>
-                <h3>Dashboard - all clients</h3>
+                <p>Dashboard - all clients</p>
                 <Search
                   type="text"
                   placeholder="search client"

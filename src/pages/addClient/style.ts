@@ -8,28 +8,30 @@ export const Container = styled.div`
 export const FormContainer = styled.div`
   height: 80%;
   width: 40vw;
-  margin: 0 auto;
+  margin:5vh auto;
 
-  h2{
-    font-family: 'Inter',sans-serif;
-  }
 `
 
 export const Form = styled.form`
+div{
+  margin-top: 20px;
+}
  div input{
     width: 100%;
-    height: 40px;
+    height: 50px;
     border: 1px solid gainsboro;
     outline: none;
     padding-left: 15px;
     &:focus{
-        border: 1.8px solid rgb(244, 106, 53);
+        border: 2px solid rgb(244, 106, 53);
     }
  }
  div label{
+  font-size: 1rem;
+
   display: block;
   margin-top: 10px;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
  }
 `;
 
@@ -46,4 +48,7 @@ export const Button = styled.button<Button>`
  border: none;
  cursor: pointer;
  font-size: 1.1rem;
+`
+export const TitleComponent = styled.p`
+font-size: 2rem;
 `

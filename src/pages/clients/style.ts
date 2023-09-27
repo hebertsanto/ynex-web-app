@@ -7,7 +7,6 @@ export const TableClientsContainer = styled.div`
 export const Table = styled.table`
  width: 1000px;
  font-size: 0.9rem;
- border-radius: 5px;
  padding: 0.9rem;
  border: 1px solid gainsboro;
 

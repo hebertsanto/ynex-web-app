@@ -8,6 +8,10 @@ export const HeaderStyle = styled.header`
   width: 100%;
   background-color: #fff;
   border-bottom: 1px solid gainsboro;
+
+  div p{
+    font-size:2rem;
+  }
 `;
 
 export const NavLinks = styled.ul`
