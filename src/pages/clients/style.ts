@@ -3,18 +3,17 @@ import styled from "styled-components";
 export const TableClientsContainer = styled.div`
   padding:30px;
   margin-top: 5px;
-  width: 70vw;
+  width: 80vw;
 `;
 
 export const Table = styled.table`
  width: 100%;
- font-size: 0.9rem;
+ font-size: 0.8rem;
+ text-align: center;
  padding: 0.9rem;
  border: 1px solid gainsboro;
-
  tr, td, th{
   padding: 15px;
-  text-align: center;
  }
  th{
   padding: 0px;

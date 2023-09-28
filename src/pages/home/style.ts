@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 
 export const Container = styled.div`
-  height: 80vh;
+  min-height: 80vh;
 `;
 export const SubContainer = styled.div`
   display: flex;
   margin: 20px auto;
   justify-content:center;
-  width: 100vw;
+  width: 99vw;
   div p{
     margin-left: 30px;
     font-family: 'Inter';

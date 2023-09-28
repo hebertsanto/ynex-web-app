@@ -3,9 +3,10 @@ import { Button, Container, Form, FormContainer, TitleComponent } from "./style"
 import React, { useEffect, useState } from "react";
 import { Error } from '../../components/error'
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export const AddClient: React.FC = () => {
-  
+
     type FormData = {
         name: string,
         email: string,
@@ -20,11 +21,23 @@ export const AddClient: React.FC = () => {
         formState: { errors }
     } = useForm<FormData>();
 
+
     const handleAddClient: SubmitHandler<FormData> = (data) => {
-        console.log(data);
-        if (data) {
-            alert('faz o post pra api que ainda vou criar')
-        }
+        axios.post('http://localhost:3000/', {
+            name: data.name,
+            email: data.email,
+            cep: data.cep,
+            address: data.address,
+            phoneNumber: data.tel
+        })
+            .then(res => {
+                if(res.data){
+                  toast.success('client add success')
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            });
     }
 
     const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -45,7 +58,7 @@ export const AddClient: React.FC = () => {
     }
 
     useEffect(() => {
-        if(cep.length === 8){
+        if (cep.length === 8) {
             getACep(String(cep))
         }
         setAdress('')
@@ -98,11 +111,11 @@ export const AddClient: React.FC = () => {
                             {...register("address", { required: true })}
                             type="text"
                             name="address"
-                            placeholder="type address" 
+                            placeholder="type address"
                             value={adress}
                             onChange={(e) => setAdress(e.target.value)}
-                            />
-                          {errors.address?.type === "required" && <Error message="campo obrigatório" />}
+                        />
+                        {errors.address?.type === "required" && <Error message="campo obrigatório" />}
                     </div>
                     <div>
                         <label htmlFor="tel">phone number</label>

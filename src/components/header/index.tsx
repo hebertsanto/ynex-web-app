@@ -21,6 +21,11 @@ export const Header : React.FC = () => {
            <NavLinks>
              <li>
                <Link to="/account">
+               charts
+               </Link>
+             </li>
+             <li>
+               <Link to="/account">
                your account
                </Link>
              </li>
