@@ -47,10 +47,7 @@ export const AddClient: React.FC = () => {
         axios.get(url)
             .then(res => {
                 const { data } = res;
-                if (!data.logadouro || !data.localidade) {
-                    setAdress('');
-                }
-                setAdress(`${data.logradouro}, ${data.localidade}`)
+                setAdress(`${data.logradouro}`)
             })
             .catch(error => {
                 return error;
@@ -60,8 +57,6 @@ export const AddClient: React.FC = () => {
     useEffect(() => {
         if (cep.length === 8) {
             getACep(String(cep))
-        }else{
-            setAdress('');
         }
     }, [cep])
 
@@ -115,7 +110,6 @@ export const AddClient: React.FC = () => {
                             name="address"
                             placeholder="type address"
                             value={adress}
-                            onChange={(e) => setAdress(e.target.value)}
                         />
                         {errors.address?.type === "required" && <Error message="campo obrigatório" />}
                     </div>

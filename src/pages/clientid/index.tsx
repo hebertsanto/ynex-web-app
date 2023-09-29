@@ -20,7 +20,7 @@ export const ClientIdComponent: React.FC = () => {
     const handleUpdateClient = () => {
         alert('isso vai editar o cliente');
     };
-    console.log(data);
+    
     return (
         <ContainerClientId>
             <div>

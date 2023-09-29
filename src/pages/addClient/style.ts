@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  height: 80vh;
+  min-height: 80vh;
   font-family: 'Inter', sans-serif;
 `;
 

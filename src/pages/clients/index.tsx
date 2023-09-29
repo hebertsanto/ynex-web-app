@@ -24,7 +24,7 @@ export const Clients: React.FC = () => {
             <thead>
                <tr>
                   <th>
-                     nome
+                     name
                   </th>
                   <th>
                      email
@@ -39,7 +39,7 @@ export const Clients: React.FC = () => {
                      adress
                   </th>
                   <th>
-                     detalhes
+                     actions
                   </th>
                </tr>
             </thead>
