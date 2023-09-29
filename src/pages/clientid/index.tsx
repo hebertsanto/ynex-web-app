@@ -14,6 +14,12 @@ export const ClientIdComponent: React.FC = () => {
                 return error;
             })
     })
+    const handleDeleteClient = () => {
+        alert('isso vai deletar o cliente');
+    };
+    const handleUpdateClient = () => {
+        alert('isso vai editar o cliente');
+    };
     console.log(data);
     return (
         <ContainerClientId>
@@ -33,6 +39,7 @@ export const ClientIdComponent: React.FC = () => {
                     <ButtonContainer>
                         <div>
                             <Button 
+                            onClick={() => handleUpdateClient()}
                               bgColor="rgba(24, 120, 231, 0.8)"
                               hover="rgba(49, 137, 238, 0.8)"
                              >
@@ -41,6 +48,7 @@ export const ClientIdComponent: React.FC = () => {
                         </div>
                         <div>
                             <Button 
+                            onClick={() => handleDeleteClient()}
                              bgColor="rgb(220, 38, 38)"
                              hover="rgba(212, 0, 0, 0.788)"
                             >
