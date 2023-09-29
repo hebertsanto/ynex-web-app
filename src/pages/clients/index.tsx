@@ -1,28 +1,23 @@
 import React from "react";
-import { Table, TableClientsContainer } from "./style"
-import { Link } from 'react-router-dom'
-import { useQuery } from "react-query";
 import axios from "axios";
+import { Table, TableClientsContainer } from "./style"
+import { useNavigate } from 'react-router-dom'
+import { useQuery } from "react-query";
+import { Client } from "../../core/types";
 
 
 export const Clients: React.FC = () => {
 
    const { data } = useQuery('clients', async () => {
-      return await axios.get('http://localhost:3000/')
+      return await axios.get('http://localhost:3000/clients')
          .then(res => res.data)
          .catch(error => {
             return error;
          })
    })
 
-   type Client = {
-      _id:string,
-      address: string,
-      cep: string,
-      email: string
-      name: string,
-      phoneNumber: string,
-   }
+   const navigate = useNavigate();
+
    return (
       <TableClientsContainer>
          <Table>
@@ -43,18 +38,24 @@ export const Clients: React.FC = () => {
                   <th>
                      adress
                   </th>
+                  <th>
+                     detalhes
+                  </th>
                </tr>
             </thead>
             <tbody>
-               {data?.clients.length > 0 && data.clients.map((client : Client) =>
+               {data?.clients.length > 0 && data.clients.map((client: Client) =>
                   <tr key={client._id}>
-                     <Link to={`client/${client._id}`}>
+                     <td>
                         {client.name}
-                     </Link>
+                     </td>
                      <td>{client.email}</td>
                      <td>{client.phoneNumber}</td>
                      <td>{client.cep}</td>
                      <td>{client.address}</td>
+                     <td>
+                        <button onClick={() => navigate(`client/${client._id}`)}>detalhes</button>
+                     </td>
                   </tr>
                )}
             </tbody>

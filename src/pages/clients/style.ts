@@ -4,6 +4,7 @@ export const TableClientsContainer = styled.div`
   padding:30px;
   margin-top: 5px;
   width: 80vw;
+  background-color: rgb(249, 250, 251);
 `;
 
 export const Table = styled.table`
@@ -11,23 +12,29 @@ export const Table = styled.table`
  font-size: 0.8rem;
  text-align: center;
  padding: 0.9rem;
- border: 1px solid gainsboro;
- tr, td, th{
-  padding: 15px;
- }
+ border-bottom: 1px solid gainsboro;
+ border-collapse: collapse;
  th{
-  padding: 0px;
+  text-transform: capitalize;
+  padding: 10px;
   font-weight: bold;
+  border-bottom: 1px solid gainsboro;
   color: rgba(70, 70, 70,908)
  }
+ thead{
+  background-color: #f4f4f4;
+ }
   td{
+    border-bottom: 1px solid gainsboro;
     color: gray;
-    margin: 10px;
+    padding: 10px;
   }
-  tr a{
-    margin-top: 20px;
-    text-decoration:none;
-    color: gray;
-    display: block;
+  td button{
+    border: 1px solid gainsboro;
+    padding: 5px;
+    cursor: pointer;
+    &:hover{
+      background-color: gainsboro;
+    }
   }
 `;

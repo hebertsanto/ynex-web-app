@@ -6,15 +6,18 @@ export const Container = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  height: 80%;
+  min-height: 80%;
+  background-color: #fff;
+  padding: 30px;
   width: 40vw;
-  margin:5vh auto;
+  box-shadow: 4px 2px 4px rgba(220,220,220, 998);
+  margin:1vh auto;
 
 `
 
 export const Form = styled.form`
 div{
-  margin-top: 20px;
+  margin-top: 10px;
 }
  div input{
     width: 100%;

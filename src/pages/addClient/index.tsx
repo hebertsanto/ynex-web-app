@@ -1,19 +1,17 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Button, Container, Form, FormContainer, TitleComponent } from "./style";
 import React, { useEffect, useState } from "react";
-import { Error } from '../../components/error'
 import axios from "axios";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { Error } from '../../components/error'
 import { toast } from "react-toastify";
+import { FormData } from "../../core/types";
+import { Button, Container, Form, FormContainer, TitleComponent } from "./style";
+import { Link } from "react-router-dom";
 
 export const AddClient: React.FC = () => {
 
-    type FormData = {
-        name: string,
-        email: string,
-        cep: string,
-        address: string,
-        tel: string,
-    }
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    const [cep, setCep] = useState('');
+    const [adress, setAdress] = useState('');
 
     const {
         register,
@@ -21,9 +19,9 @@ export const AddClient: React.FC = () => {
         formState: { errors }
     } = useForm<FormData>();
 
-
     const handleAddClient: SubmitHandler<FormData> = (data) => {
-        axios.post('http://localhost:3000/', {
+        
+        axios.post('http://localhost:3000/clients', {
             name: data.name,
             email: data.email,
             cep: data.cep,
@@ -31,8 +29,10 @@ export const AddClient: React.FC = () => {
             phoneNumber: data.tel
         })
             .then(res => {
-                if(res.data){
-                  toast.success('client add success')
+                if (res.data) {
+                    toast.success('client add success')
+                }else{
+                    toast.error('something went wrong')
                 }
             })
             .catch(error => {
@@ -40,16 +40,16 @@ export const AddClient: React.FC = () => {
             });
     }
 
-    const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-    const [cep, setCep] = useState('');
-    const [adress, setAdress] = useState('');
 
     const getACep = (cep: string) => {
         const url = `https://viacep.com.br/ws/${cep}/json/`;
-
+        
         axios.get(url)
             .then(res => {
                 const { data } = res;
+                if (!data.logadouro || !data.localidade) {
+                    setAdress('');
+                }
                 setAdress(`${data.logradouro}, ${data.localidade}`)
             })
             .catch(error => {
@@ -60,12 +60,14 @@ export const AddClient: React.FC = () => {
     useEffect(() => {
         if (cep.length === 8) {
             getACep(String(cep))
+        }else{
+            setAdress('');
         }
-        setAdress('')
     }, [cep])
 
     return (
         <Container>
+            <Link to="/">back to home</Link>
             <FormContainer>
                 <TitleComponent>register a new client</TitleComponent>
                 <Form onSubmit={handleSubmit(handleAddClient)}>
