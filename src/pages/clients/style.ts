@@ -4,7 +4,6 @@ export const TableClientsContainer = styled.div`
   padding:30px;
   margin-top: 5px;
   width: 80vw;
-  background-color: rgb(249, 250, 251);
 `;
 
 export const Table = styled.table`

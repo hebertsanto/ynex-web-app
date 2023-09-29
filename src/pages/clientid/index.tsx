@@ -1,34 +1,55 @@
 import axios from "axios";
 import React from "react"
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom"
-import { ContainerClientId, ContainerInfoClientId } from "./style";
+import { Link, useParams } from "react-router-dom"
+import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, Title } from "./style";
 
-export const ClientIdComponent : React.FC = () => {
-    
+export const ClientIdComponent: React.FC = () => {
+
     const { id } = useParams();
-    const { data } = useQuery('clientI', async() => {
+    const { data } = useQuery('clientI', async () => {
         return await axios.get(`http://localhost:3000/client/${id}`)
-        .then(response => response.data)
-        .catch(error => {
-            return error;
-        })
+            .then(response => response.data)
+            .catch(error => {
+                return error;
+            })
     })
     console.log(data);
-    return(
+    return (
         <ContainerClientId>
-           <div>
-             <p>clients {'>'} info</p>
-              <ContainerInfoClientId>
-                 <p>
-                   nome: {data?.client.name}
-                 </p>
-                 <p>email : {data?.client.email}</p>
-                 <p>phone : {data?.client.phoneNumber}</p>
-                 <p>address : {data?.client.address}</p>
-                 <p>cep :{data?.client.cep}</p>
-              </ContainerInfoClientId>
-           </div>
+            <div>
+                <Link to='/dashboard'>back to home</Link>
+                <Title>clients {'>'} info</Title>
+                <ContainerInfoClientId>
+                    <ContainerDetailsInfo>
+                        <p>
+                            nome: {data?.client.name}
+                        </p>
+                        <p>email : {data?.client.email}</p>
+                        <p>phone : {data?.client.phoneNumber}</p>
+                        <p>address : {data?.client.address}</p>
+                        <p>cep :{data?.client.cep}</p>
+                    </ContainerDetailsInfo>
+                    <ButtonContainer>
+                        <div>
+                            <Button 
+                              bgColor="rgba(24, 120, 231, 0.8)"
+                              hover="rgba(49, 137, 238, 0.8)"
+                             >
+                                edit this client
+                            </Button>
+                        </div>
+                        <div>
+                            <Button 
+                             bgColor="rgb(220, 38, 38)"
+                             hover="rgba(212, 0, 0, 0.788)"
+                            >
+                                Delete this client
+                            </Button>
+                        </div>
+                    </ButtonContainer>
+                </ContainerInfoClientId>
+            </div>
         </ContainerClientId>
     )
 }
