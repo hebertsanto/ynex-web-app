@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   min-height: 80vh;
@@ -13,7 +13,7 @@ export const FormContainer = styled.div`
   box-shadow: 4px 2px 4px rgba(220,220,220, 998);
   margin:1vh auto;
 
-`
+`;
 
 export const Form = styled.form`
 div{
@@ -55,7 +55,7 @@ export const Button = styled.button<Button>`
  border: none;
  cursor: pointer;
  font-size: 1.1rem;
-`
+`;
 export const TitleComponent = styled.p`
 font-size: 2rem;
-`
+`;

@@ -18,5 +18,23 @@
         "react"
     ],
     "rules": {
+        "indent": [2, 2], 
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "comma-dangle": ["error", "never"],
+        "no-undef": "error", 
+        "no-console": "warn",
+        "eol-last": "error",
+        "no-multiple-empty-lines": ["error", { "max": 2 }],
+        "no-extra-parens": "error",
+        "arrow-parens": ["error", "as-needed"],
+        "arrow-spacing": "error",
+        "no-var": "error",
+        "object-curly-spacing": ["error", "always"],
+        "array-bracket-spacing": ["error", "always"],
+        "camelcase": "error",
+        "prefer-const": "error", 
+        "no-trailing-spaces": "error" ,
+        "no-unused-vars": "error"
     }
 }

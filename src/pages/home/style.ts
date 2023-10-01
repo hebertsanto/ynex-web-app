@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 
 export const Container = styled.div`
@@ -39,4 +39,4 @@ export const ButtonRegisterAClient = styled.button`
   font-family: roboto;
   font-size: 0.9rem;
   border:none;
-`
+`;

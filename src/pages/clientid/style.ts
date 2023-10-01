@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 
 export const ContainerClientId = styled.div`
@@ -14,7 +14,7 @@ export const ContainerInfoClientId  = styled.div`
  box-shadow: 4px 2px 4px rgba(220,220,220, 998);
  background-color: #fff;
 
-`
+`;
 export const Title = styled.p`
  margin-left: 20px;
  margin-top: 10px;
@@ -51,4 +51,4 @@ export const Button = styled.button<Button>`
   &:hover{
     background-color:${props => props.hover}
   }
-`
+`;
