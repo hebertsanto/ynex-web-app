@@ -54,7 +54,7 @@ export const Clients: React.FC = () => {
                      <td>{client.cep}</td>
                      <td>{client.address}</td>
                      <td>
-                        <button onClick={() => navigate(`client/${client._id}`)}>detalhes</button>
+                        <button onClick={() => navigate(`client/${client._id}`)}>actions</button>
                      </td>
                   </tr>
                )}

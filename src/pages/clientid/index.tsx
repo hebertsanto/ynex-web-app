@@ -1,24 +1,41 @@
 import axios from "axios";
 import React from "react"
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, Title } from "./style";
+import { toast } from "react-toastify";
 
 export const ClientIdComponent: React.FC = () => {
 
     const { id } = useParams();
+    const navigate = useNavigate();
+
     const { data } = useQuery('clientI', async () => {
         return await axios.get(`http://localhost:3000/client/${id}`)
             .then(response => response.data)
             .catch(error => {
                 return error;
             })
-    })
+    });
+
     const handleDeleteClient = () => {
-        alert('isso vai deletar o cliente');
+        alert('isso vai apagar o cliente');
+        axios.delete(`http://localhost:3000/client/${id}`)
+        .then(res => {
+           const { data } = res;
+           if(data.msg){
+            toast.success('client deleted successfully');
+            navigate('/dashboard');
+        
+           }
+           return;
+        }).catch(error => {
+            return console.log(error)
+        })
     };
     const handleUpdateClient = () => {
         alert('isso vai editar o cliente');
+        
     };
     
     return (

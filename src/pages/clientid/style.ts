@@ -7,7 +7,7 @@ export const ContainerClientId = styled.div`
   font-family:'Inter', sans-serif;
 `;
 export const ContainerInfoClientId  = styled.div`
- width: 50%;
+ width: 35%;
  padding: 20px;
  height: 70vh;
  margin-left: 10px;
@@ -40,7 +40,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button<Button>`
   width: 100%;
-  height: 50px;
+  height: 60px;
   margin-top:6px;
   color: #fff;
   font-size:1rem;
