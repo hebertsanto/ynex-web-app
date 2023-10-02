@@ -3,12 +3,12 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, Title } from './style';
-import { toast } from 'react-toastify';
+import { handleDeleteClient } from '../../core/functions/deleteUser';
 
 export const ClientIdComponent: React.FC = () => {
 
-  const { id } = useParams();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const { data } = useQuery('clientI', async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
@@ -18,20 +18,7 @@ export const ClientIdComponent: React.FC = () => {
       });
   });
 
-  const handleDeleteClient = () => {
-    alert('isso vai apagar o cliente');
-    axios.delete(`http://localhost:3000/client/${id}`)
-      .then(res => {
-        const { data } = res;
-        if(data.msg){
-          toast.success('client deleted successfully');
-          navigate('/dashboard');
-        }
-        return;
-      }).catch(error => {
-        return console.log(error);
-      });
-  };
+
   const handleUpdateClient = () => {
     alert('isso vai editar o cliente');
   };
@@ -63,7 +50,7 @@ export const ClientIdComponent: React.FC = () => {
             </div>
             <div>
               <Button
-                onClick={() => handleDeleteClient()}
+                onClick={() => handleDeleteClient(id, navigate)}
                 bgColor="rgb(220, 38, 38)"
                 hover="rgba(212, 0, 0, 0.788)"
               >

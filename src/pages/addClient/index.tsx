@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Error } from '../../components/error';
-import { toast } from 'react-toastify';
 import { FormData } from '../../core/types';
 import { Button, Container, Form, FormContainer, TitleComponent } from './style';
 import { Link } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import { createUser } from '../../core/functions/createUser';
+import { emailRegex } from '../../core/utils/emailRegex';
 
 export const AddClient: React.FC = () => {
-
-  const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-  const [ cep, setCep ] = useState('');
-  const [ adress, setAdress ] = useState('');
 
   const {
     register,
@@ -19,46 +16,10 @@ export const AddClient: React.FC = () => {
     formState: { errors }
   } = useForm<FormData>();
 
-  const handleAddClient: SubmitHandler<FormData> = data => {
-
-    axios.post('http://localhost:3000/clients', {
-      name: data.name,
-      email: data.email,
-      cep: data.cep,
-      address: data.address,
-      phoneNumber: data.tel
-    })
-      .then(res => {
-        if (res.data) {
-          toast.success('client add success');
-        }else{
-          toast.error('something went wrong');
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  const mutation = useMutation(createUser);
+  const handleAddClient: SubmitHandler<FormData> = async data => {
+    mutation.mutate(data);
   };
-
-
-  const getACep = (cep: string) => {
-    const url = `https://viacep.com.br/ws/${cep}/json/`;
-
-    axios.get(url)
-      .then(res => {
-        const { data } = res;
-        setAdress(`${data.logradouro}`);
-      })
-      .catch(error => {
-        return error;
-      });
-  };
-
-  useEffect(() => {
-    if (cep.length === 8) {
-      getACep(String(cep));
-    }
-  }, [ cep ]);
 
   return (
     <Container>
@@ -98,7 +59,6 @@ export const AddClient: React.FC = () => {
               type="text"
               name="cep"
               placeholder="type your cep"
-              onChange={e => setCep(e.target.value)}
             />
             {errors.cep?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
@@ -109,21 +69,21 @@ export const AddClient: React.FC = () => {
               type="text"
               name="address"
               placeholder="type address"
-              value={adress}
             />
             {errors.address?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
           <div>
-            <label htmlFor="tel">phone number</label>
+            <label htmlFor="phoneNumber">phone number</label>
             <input
-              {...register('tel', { required: true })}
-              type="tel"
-              name="tel"
+              {...register('phoneNumber', { required: true })}
+              type="text"
+              name="phoneNumber"
               placeholder="type a phone number"
             />
-            {errors.tel?.type === 'required' && <Error message="campo obrigatório" />}
+            {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
           <Button
+            disabled={mutation.isLoading}
             width="100%"
             height="60px"
             type="submit">register</Button>

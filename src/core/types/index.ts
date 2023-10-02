@@ -3,7 +3,7 @@ export type FormData = {
     email: string,
     cep: string,
     address: string,
-    tel: string,
+    phoneNumber: string,
 }
 
 export type Client = {
@@ -14,3 +14,6 @@ export type Client = {
     name: string,
     phoneNumber: string,
  }
+ //eslint-disable-next-line
+export type Navigate = (to: string) => void;
+
