@@ -71,3 +71,31 @@ export const ContainerUpdateClient = styled.div`
   box-shadow: 4px 4px 4px rgba(220,220,220, 998);
  }
 `;
+export const ModalDeleteStyle = styled.div`
+ position: absolute;
+ top: 0;
+ height: 100vh;
+ width: 100vw;
+ z-index: 999;
+ background-color: rgba(255,255,255, 0);
+ backdrop-filter:blur(2px);
+
+ div{
+  background-color: #fff;
+  height: 60vh;
+  width: 30vw;
+  position: absolute;
+  top: 10vh;
+  left: 30vw;
+  box-shadow: 4px 4px 4px rgba(220,220,220, 998);
+
+  button{
+    width: 500px;
+    height: 50px;
+    margin:5px;
+    border:1px solid;
+    cursor:pointer;
+    background: #f4f4f4;
+  }
+ }
+`;

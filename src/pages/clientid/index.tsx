@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, Title } from './style';
+import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteUser';
 import { toast } from 'react-toastify';
 
@@ -10,7 +10,8 @@ export const ClientIdComponent: React.FC = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const [modal, setModal] = useState(false);
+  const [ modal, setModal ] = useState(false);
+  const [ modalDelete, setModalDelete ] = useState(false);
 
   const { data } = useQuery('clientI', async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
@@ -22,7 +23,7 @@ export const ClientIdComponent: React.FC = () => {
 
 
   const handleUpdateClient = (id: string) => {
-    alert('isso vai editar o cliente');
+
     axios.put(`http://localhost:3000/client/${id}`, {
       name: 'hebertsantos',
       email: 'jussaradeveloper0704@gmail.com',
@@ -40,6 +41,9 @@ export const ClientIdComponent: React.FC = () => {
 
   const handleAtivateModal = () => {
     setModal(true);
+  };
+  const handleAtivateModalDelete = () => {
+    setModalDelete(true);
   };
 
   return (
@@ -69,7 +73,7 @@ export const ClientIdComponent: React.FC = () => {
             </div>
             <div>
               <Button
-                onClick={() => handleDeleteClient(id, navigate)}
+                onClick={() => handleAtivateModalDelete()}
                 bgColor="rgb(220, 38, 38)"
                 hover="rgba(212, 0, 0, 0.788)"
               >
@@ -78,6 +82,15 @@ export const ClientIdComponent: React.FC = () => {
             </div>
           </ButtonContainer>
         </ContainerInfoClientId>
+        {modalDelete &&
+          <ModalDeleteStyle>
+            <div>
+              <h3>tem certeza que deseja excluir esse cliente? </h3>
+              <p>essa ação não poderá ser revertida.</p>
+              <button onClick={() => handleDeleteClient(id, navigate)}>sim</button>
+              <button onClick={() => setModalDelete(false)}>cancelar</button>
+            </div>
+          </ModalDeleteStyle>}
         {modal &&
           <ContainerUpdateClient>
             <div>

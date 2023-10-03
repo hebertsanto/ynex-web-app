@@ -3,8 +3,6 @@ import { toast } from 'react-toastify';
 import { Navigate } from '../types';
 
 export const handleDeleteClient = (id: string | undefined, navigate : Navigate) => {
-
-  alert('isso vai apagar o cliente');
   axios
     .delete(`http://localhost:3000/client/${id}`)
     .then(res => {
