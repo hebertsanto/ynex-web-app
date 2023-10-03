@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { ContainerPagination, Table, TableClientsContainer } from './style';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
 import { useState } from 'react';
