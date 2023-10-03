@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, Title } from './style';
+import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteUser';
 import { toast } from 'react-toastify';
 
@@ -10,6 +10,7 @@ export const ClientIdComponent: React.FC = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
+  const [modal, setModal] = useState(false);
 
   const { data } = useQuery('clientI', async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
@@ -22,10 +23,9 @@ export const ClientIdComponent: React.FC = () => {
 
   const handleUpdateClient = (id: string) => {
     alert('isso vai editar o cliente');
-
     axios.put(`http://localhost:3000/client/${id}`, {
       name: 'hebertsantos',
-      email: 'hebertsantosdeveloper0704@gmail.com',
+      email: 'jussaradeveloper0704@gmail.com',
       cep: '11714140',
       address: 'novo endereço',
       phoneNumber: '13996623994'
@@ -34,13 +34,16 @@ export const ClientIdComponent: React.FC = () => {
         toast.success('cliente editado com sucesso');
       })
       .catch(error => {
-        // Houve um erro na requisição
-        console.error('Erro ao atualizar cliente', error);
+        return error;
       });
   };
 
+  const handleAtivateModal = () => {
+    setModal(true);
+  };
+
   return (
-    <ContainerClientId>
+    <ContainerClientId >
       <div>
         <Link to='/dashboard'>back to home</Link>
         <Title>clients {'>'} info</Title>
@@ -57,7 +60,7 @@ export const ClientIdComponent: React.FC = () => {
           <ButtonContainer>
             <div>
               <Button
-                onClick={() => handleUpdateClient(String(id))}
+                onClick={() => handleAtivateModal()}
                 bgColor="rgba(24, 120, 231, 0.8)"
                 hover="rgba(49, 137, 238, 0.8)"
               >
@@ -75,6 +78,14 @@ export const ClientIdComponent: React.FC = () => {
             </div>
           </ButtonContainer>
         </ContainerInfoClientId>
+        {modal &&
+          <ContainerUpdateClient>
+            <div>
+              aqui vai os inputs para editar o cliente
+              <button onClick={() => setModal(false)}>fechar modal</button>
+              <button onClick={() => handleUpdateClient(String(id))}>salvar alterações</button>
+            </div>
+          </ContainerUpdateClient>}
       </div>
     </ContainerClientId>
   );

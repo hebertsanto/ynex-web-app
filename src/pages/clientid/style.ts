@@ -52,3 +52,22 @@ export const Button = styled.button<Button>`
     background-color:${props => props.hover}
   }
 `;
+export const ContainerUpdateClient = styled.div`
+ position: absolute;
+ top: 0;
+ height: 100vh;
+ width: 100vw;
+ z-index: 999;
+ background-color: rgba(255,255,255, 0);
+ backdrop-filter:blur(2px);
+
+ div{
+  background-color: #fff;
+  height: 60vh;
+  width: 30vw;
+  position: absolute;
+  top: 10vh;
+  left: 30vw;
+  box-shadow: 4px 4px 4px rgba(220,220,220, 998);
+ }
+`;
