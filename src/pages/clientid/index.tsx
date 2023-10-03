@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteUser';
+import { toast } from 'react-toastify';
 
 export const ClientIdComponent: React.FC = () => {
 
@@ -19,8 +20,23 @@ export const ClientIdComponent: React.FC = () => {
   });
 
 
-  const handleUpdateClient = () => {
+  const handleUpdateClient = (id: string) => {
     alert('isso vai editar o cliente');
+
+    axios.put(`http://localhost:3000/client/${id}`, {
+      name: 'hebertsantos',
+      email: 'hebertsantosdeveloper0704@gmail.com',
+      cep: '11714140',
+      address: 'novo endereço',
+      phoneNumber: '13996623994'
+    })
+      .then(() => {
+        toast.success('cliente editado com sucesso');
+      })
+      .catch(error => {
+        // Houve um erro na requisição
+        console.error('Erro ao atualizar cliente', error);
+      });
   };
 
   return (
@@ -31,7 +47,7 @@ export const ClientIdComponent: React.FC = () => {
         <ContainerInfoClientId>
           <ContainerDetailsInfo>
             <p>
-             nome: {data?.client.name}
+              nome: {data?.client.name}
             </p>
             <p>email : {data?.client.email}</p>
             <p>phone : {data?.client.phoneNumber}</p>
@@ -41,7 +57,7 @@ export const ClientIdComponent: React.FC = () => {
           <ButtonContainer>
             <div>
               <Button
-                onClick={() => handleUpdateClient()}
+                onClick={() => handleUpdateClient(String(id))}
                 bgColor="rgba(24, 120, 231, 0.8)"
                 hover="rgba(49, 137, 238, 0.8)"
               >
