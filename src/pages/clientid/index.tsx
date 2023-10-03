@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonClient, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
@@ -10,10 +10,10 @@ export const ClientIdComponent: React.FC = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const [ modal, setModal ] = useState(false);
-  const [ modalDelete, setModalDelete ] = useState(false);
+  const [ modal, setModal ]  = useState(false);
+  const [ modalDelete, setModalDelete ]  = useState(false);
 
-  const { data } = useQuery('clientI', async () => {
+  const { data } = useQuery([ 'clientI', id ], async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
       .then(response => response.data)
       .catch(error => {
@@ -21,11 +21,11 @@ export const ClientIdComponent: React.FC = () => {
       });
   });
 
-  const [ name, setName ] = useState(data?.client.name);
-  const [ email, setEmail ] = useState(data?.client.email);
-  const [ cep, setCep ] = useState(data?.client.cep);
-  const [ address, setAddress ] = useState(data?.client.address);
-  const [ phoneNumber, setPhoneNumber ] = useState(data?.client.phoneNumber);
+  const [ name, setName ] = useState(data?.client?.name);
+  const [ email, setEmail ] = useState(data?.client?.email);
+  const [ cep, setCep ] = useState(data?.client?.cep);
+  const [ address, setAddress ] = useState(data?.client?.address);
+  const [ phoneNumber, setPhoneNumber ] = useState(data?.client?.phoneNumber);
 
   const handleUpdateClient = (id: string) => {
 
@@ -43,6 +43,15 @@ export const ClientIdComponent: React.FC = () => {
         return error;
       });
   };
+  useEffect(() => {
+    if (data && data.client) {
+      setName(data.client.name || '');
+      setEmail(data.client.email || '');
+      setCep(data.client.cep || '');
+      setAddress(data.client.address || '');
+      setPhoneNumber(data.client.phoneNumber || '');
+    }
+  }, [ data ] );
 
   const handleAtivateModal = () => {
     setModal(true);

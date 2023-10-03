@@ -71,6 +71,9 @@ export const ContainerUpdateClient = styled.div`
   left: 30vw;
   box-shadow: 4px 4px 4px rgba(220,220,220, 998);
  }
+ div input, label{
+  display: block;
+ }
 `;
 export const ModalDeleteStyle = styled.div`
  position: absolute;
