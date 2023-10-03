@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ModalDeleteStyle, Title } from './style';
+import { Button, ButtonClient, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteUser';
 import { toast } from 'react-toastify';
 
@@ -21,15 +21,20 @@ export const ClientIdComponent: React.FC = () => {
       });
   });
 
+  const [ name, setName ] = useState(data?.client.name);
+  const [ email, setEmail ] = useState(data?.client.email);
+  const [ cep, setCep ] = useState(data?.client.cep);
+  const [ address, setAddress ] = useState(data?.client.address);
+  const [ phoneNumber, setPhoneNumber ] = useState(data?.client.phoneNumber);
 
   const handleUpdateClient = (id: string) => {
 
     axios.put(`http://localhost:3000/client/${id}`, {
-      name: 'hebertsantos',
-      email: 'jussaradeveloper0704@gmail.com',
-      cep: '11714140',
-      address: 'novo endereço',
-      phoneNumber: '13996623994'
+      name: name,
+      email: email,
+      cep: cep,
+      address: address,
+      phoneNumber: phoneNumber
     })
       .then(() => {
         toast.success('cliente editado com sucesso');
@@ -54,12 +59,12 @@ export const ClientIdComponent: React.FC = () => {
         <ContainerInfoClientId>
           <ContainerDetailsInfo>
             <p>
-              nome: {data?.client.name}
+              nome: {data?.client?.name}
             </p>
-            <p>email : {data?.client.email}</p>
-            <p>phone : {data?.client.phoneNumber}</p>
-            <p>address : {data?.client.address}</p>
-            <p>cep : {data?.client.cep}</p>
+            <p>email : {data?.client?.email}</p>
+            <p>phone : {data?.client?.phoneNumber}</p>
+            <p>address : {data?.client?.address}</p>
+            <p>cep : {data?.client?.cep}</p>
           </ContainerDetailsInfo>
           <ButtonContainer>
             <div>
@@ -84,17 +89,61 @@ export const ClientIdComponent: React.FC = () => {
         </ContainerInfoClientId>
         {modalDelete &&
           <ModalDeleteStyle>
-            <div>
+            <ContentModalDelete>
               <h3>tem certeza que deseja excluir esse cliente? </h3>
               <p>essa ação não poderá ser revertida.</p>
-              <button onClick={() => handleDeleteClient(id, navigate)}>sim</button>
-              <button onClick={() => setModalDelete(false)}>cancelar</button>
-            </div>
+              <div style={{
+                marginTop: '30px',
+                marginLeft: '20px'
+              }}>
+                <ButtonClient
+                  onClick={() =>
+                    handleDeleteClient(id, navigate)}
+                  bgColor='#0475d1'
+                >
+                  excluir cliente
+                </ButtonClient>
+                <ButtonClient
+                  bgColor='#e22b13'
+                  onClick={() => setModalDelete(false)}>
+                  cancelar
+                </ButtonClient>
+              </div>
+            </ContentModalDelete>
           </ModalDeleteStyle>}
         {modal &&
           <ContainerUpdateClient>
             <div>
-              aqui vai os inputs para editar o cliente
+              <label htmlFor="">nome</label>
+              <input type="text"
+                placeholder='novo nome'
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+              <label htmlFor="">email</label>
+              <input type="text"
+                placeholder='novo nome'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <label htmlFor="">telefone</label>
+              <input type="text"
+                placeholder='novo nome'
+                value={phoneNumber}
+                onChange={e => setPhoneNumber(e.target.value)}
+              />
+              <label htmlFor="">cep</label>
+              <input type="text"
+                placeholder='novo nome'
+                value={cep}
+                onChange={e => setCep(e.target.value)}
+              />
+              <label htmlFor="">address</label>
+              <input type="text"
+                placeholder='novo nome'
+                value={address}
+                onChange={e => setAddress(e.target.value)}
+              />
               <button onClick={() => setModal(false)}>fechar modal</button>
               <button onClick={() => handleUpdateClient(String(id))}>salvar alterações</button>
             </div>

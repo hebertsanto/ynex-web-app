@@ -13,7 +13,6 @@ export const ContainerInfoClientId  = styled.div`
  margin-left: 10px;
  box-shadow: 4px 2px 4px rgba(220,220,220, 998);
  background-color: #fff;
-
 `;
 export const Title = styled.p`
  margin-left: 20px;
@@ -54,6 +53,8 @@ export const Button = styled.button<Button>`
 `;
 export const ContainerUpdateClient = styled.div`
  position: absolute;
+ transform: translateY(50px);
+ transition: 200ms;
  top: 0;
  height: 100vh;
  width: 100vw;
@@ -80,22 +81,35 @@ export const ModalDeleteStyle = styled.div`
  background-color: rgba(255,255,255, 0);
  backdrop-filter:blur(2px);
 
- div{
+`;
+export const ContentModalDelete = styled.div`
   background-color: #fff;
   height: 60vh;
   width: 30vw;
   position: absolute;
+  border: 1px solid rgba(210,210,210, 998);
   top: 10vh;
   left: 30vw;
   box-shadow: 4px 4px 4px rgba(220,220,220, 998);
+  h3{
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+`;
 
-  button{
-    width: 500px;
+type ButtonProps = {
+  bgColor: string
+}
+export const ButtonClient = styled.button<ButtonProps>`
+    width: 95%;
     height: 50px;
     margin:5px;
-    border:1px solid;
+    border:none;
     cursor:pointer;
-    background: #f4f4f4;
-  }
- }
+    color: #fff;
+    font-family: roboto;
+    font-size: 1rem;
+    background: ${props => props.bgColor};
 `;
