@@ -32,3 +32,18 @@ export const Table = styled.table`
     border: none;
   }
 `;
+export const ContainerPagination = styled.div`
+ width: 300px;
+ margin: 20px auto;
+ span{
+  font-size:0.8rem;
+ }
+ button{
+  margin: 10px;
+  background-color: #fff;
+  border: none;
+  a{
+    font-size:1rem;
+  }
+ }
+`;

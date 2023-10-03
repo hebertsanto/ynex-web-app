@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import { Table, TableClientsContainer } from './style';
-import { useNavigate } from 'react-router-dom';
+import { ContainerPagination, Table, TableClientsContainer } from './style';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
-
+import { useState } from 'react';
 
 export const Clients: React.FC = () => {
 
@@ -15,19 +15,25 @@ export const Clients: React.FC = () => {
         return error;
       });
   });
+  const [ currentPage, setCurrentPage ]  = useState(1);
+  const itemsPerPage = 8;
 
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedClients = data?.clients?.slice(startIndex, endIndex) || [];
   const navigate = useNavigate();
 
   return (
     <TableClientsContainer>
+      <p>filtros</p>
       <Table>
         <thead>
           <tr>
             <th>
-             name
+              name
             </th>
             <th>
-             email
+              email
             </th>
             <th>
               phone
@@ -39,27 +45,45 @@ export const Clients: React.FC = () => {
               adress
             </th>
             <th>
-             actions
+              actions
             </th>
           </tr>
         </thead>
         <tbody>
-          {data?.clients.length > 0 && data.clients.map((client: Client) =>
-            <tr key={client._id}>
-              <td>
-                {client.name}
-              </td>
-              <td>{client.email}</td>
-              <td>{client.phoneNumber}</td>
-              <td>{client.cep}</td>
-              <td>{client.address}</td>
-              <td>
-                <button onClick={() => navigate(`client/${client._id}`)}>actions</button>
-              </td>
-            </tr>
-          )}
+          {paginatedClients.length > 0 &&
+            paginatedClients.map((client: Client) =>
+              <>
+                <tr key={client._id}>
+                  <td>
+                    {client.name}
+                  </td>
+                  <td>{client.email}</td>
+                  <td>{client.phoneNumber}</td>
+                  <td>{client.cep}</td>
+                  <td>{client.address}</td>
+                  <td>
+                    <button onClick={() => navigate(`client/${client._id}`)}>actions</button>
+                  </td>
+                </tr>
+              </>
+            )}
         </tbody>
       </Table>
+      <ContainerPagination>
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          prev page
+        </button>
+        <span>Página {currentPage}</span>
+        <button
+          disabled={endIndex >= data?.clients?.length}
+          onClick={() => setCurrentPage(currentPage + 1)}
+        >
+          next page
+        </button>
+      </ContainerPagination>
     </TableClientsContainer>
   );
 };
