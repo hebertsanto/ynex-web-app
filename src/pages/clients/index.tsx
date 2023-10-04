@@ -15,6 +15,7 @@ export const Clients: React.FC = () => {
         return error;
       });
   });
+
   const [ currentPage, setCurrentPage ]  = useState(1);
   const itemsPerPage = 8;
 
@@ -25,7 +26,6 @@ export const Clients: React.FC = () => {
 
   return (
     <TableClientsContainer>
-      <p>filtros</p>
       <Table>
         <thead>
           <tr>
