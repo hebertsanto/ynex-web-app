@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Button, ButtonClient, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
+import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteClient';
 import { handleUpdateClient } from '../../core/functions/updateClient';
 
@@ -10,8 +10,8 @@ export const ClientIdComponent: React.FC = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
-  const [ modal, setModal ]  = useState(false);
-  const [ closeModalDelete, setCloseModalDelete ]  = useState(false);
+  const [ modal, setModal ] = useState(false);
+  const [ closeModalDelete, setCloseModalDelete ] = useState(false);
 
   const { data } = useQuery([ 'clientI', id ], async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
@@ -35,7 +35,7 @@ export const ClientIdComponent: React.FC = () => {
       setAddress(data.client.address || '');
       setPhoneNumber(data.client.phoneNumber || '');
     }
-  }, [ data ] );
+  }, [ data ]);
 
   return (
     <ContainerClientId >
@@ -55,6 +55,7 @@ export const ClientIdComponent: React.FC = () => {
           <ButtonContainer>
             <div>
               <Button
+                width='100%'
                 onClick={() => setModal(true)}
                 bgColor="rgba(24, 120, 231, 0.8)"
                 hover="rgba(49, 137, 238, 0.8)"
@@ -64,6 +65,7 @@ export const ClientIdComponent: React.FC = () => {
             </div>
             <div>
               <Button
+                width='100%'
                 onClick={() => setCloseModalDelete(true)}
                 bgColor="rgb(220, 38, 38)"
                 hover="rgba(212, 0, 0, 0.788)"
@@ -79,21 +81,31 @@ export const ClientIdComponent: React.FC = () => {
               <h3>tem certeza que deseja excluir esse cliente? </h3>
               <p>essa ação não poderá ser revertida.</p>
               <div style={{
-                marginTop: '30px',
-                marginLeft: '20px'
+                marginTop: '15px'
               }}>
-                <ButtonClient
+                <Button
+                  style={{
+                    marginLeft: '15px'
+                  }}
+                  width='90%'
+                  bgColor='#e22b13'
+                  hover="rgba(212, 0, 0, 0.788)"
                   onClick={() =>
                     handleDeleteClient(id, navigate)}
-                  bgColor='#0475d1'
+
                 >
                   excluir cliente
-                </ButtonClient>
-                <ButtonClient
-                  bgColor='#e22b13'
+                </Button>
+                <Button
+                  style={{
+                    marginLeft: '15px'
+                  }}
+                  width='90%'
+                  bgColor='#0475d1'
+                  hover="rgba(49, 137, 238, 0.8)"
                   onClick={() => setCloseModalDelete(false)}>
                   cancelar
-                </ButtonClient>
+                </Button>
               </div>
             </ContentModalDelete>
           </ModalDeleteStyle>}
@@ -130,8 +142,24 @@ export const ClientIdComponent: React.FC = () => {
                 value={address}
                 onChange={e => setAddress(e.target.value)}
               />
-              <button onClick={() => setModal(false)}>fechar modal</button>
-              <button onClick={() => handleUpdateClient(String(id), name, email, cep,address, phoneNumber)}>salvar alterações</button>
+              <Button
+                hover="rgba(49, 137, 238, 0.8)"
+                bgColor='#0475d1'
+                onClick={() => handleUpdateClient(String(id), name, email, cep, address, phoneNumber)}
+                width='95%'
+                style={{
+                  marginLeft: '10px'
+                }}
+              >salvar alterações</Button>
+              <Button
+                style={{
+                  marginLeft: '10px'
+                }}
+                bgColor='#e22b13'
+                hover="rgba(212, 0, 0, 0.788)"
+                width='95%'
+                onClick={() => setModal(false)}>fechar modal</Button>
+
             </div>
           </ContainerUpdateClient>}
       </div>

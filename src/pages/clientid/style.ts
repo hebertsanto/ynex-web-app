@@ -32,15 +32,16 @@ height: 40vh;
 type Button = {
   bgColor: string,
   hover: string,
+  width: string,
 }
 export const ButtonContainer = styled.div`
  
 `;
 
 export const Button = styled.button<Button>`
-  width: 100%;
+  width: ${props => props.width};
   height: 60px;
-  margin-top:6px;
+  margin-top: 4px;
   color: #fff;
   font-size:1rem;
   border: none;
@@ -53,8 +54,6 @@ export const Button = styled.button<Button>`
 `;
 export const ContainerUpdateClient = styled.div`
  position: absolute;
- transform: translateY(50px);
- transition: 200ms;
  top: 0;
  height: 100vh;
  width: 100vw;
@@ -65,14 +64,24 @@ export const ContainerUpdateClient = styled.div`
  div{
   background-color: #fff;
   height: 60vh;
-  width: 30vw;
+  width: 50%;
   position: absolute;
   top: 10vh;
-  left: 30vw;
+  left: 25vw;
   box-shadow: 4px 4px 4px rgba(220,220,220, 998);
  }
  div input, label{
   display: block;
+  margin-left: 10px;
+ }
+
+ div input {
+   width: 95%;
+   height: 40px;
+   padding-left: 10px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   font-size:1rem;
  }
 `;
 export const ModalDeleteStyle = styled.div`
@@ -83,14 +92,13 @@ export const ModalDeleteStyle = styled.div`
  z-index: 999;
  background-color: rgba(255,255,255, 0);
  backdrop-filter:blur(2px);
-
+ 
 `;
 export const ContentModalDelete = styled.div`
   background-color: #fff;
   height: 60vh;
   width: 30vw;
   position: absolute;
-  border: 1px solid rgba(210,210,210, 998);
   top: 10vh;
   left: 30vw;
   box-shadow: 4px 4px 4px rgba(220,220,220, 998);
@@ -100,19 +108,4 @@ export const ContentModalDelete = styled.div`
   p{
     text-align: center;
   }
-`;
-
-type ButtonProps = {
-  bgColor: string
-}
-export const ButtonClient = styled.button<ButtonProps>`
-    width: 95%;
-    height: 50px;
-    margin:5px;
-    border:none;
-    cursor:pointer;
-    color: #fff;
-    font-family: roboto;
-    font-size: 1rem;
-    background: ${props => props.bgColor};
 `;
