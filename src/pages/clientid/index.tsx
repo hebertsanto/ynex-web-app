@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonClient, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteUser';
-import { toast } from 'react-toastify';
+import { handleUpdateClient } from '../../core/functions/addClient';
 
 export const ClientIdComponent: React.FC = () => {
 
@@ -27,22 +27,6 @@ export const ClientIdComponent: React.FC = () => {
   const [ address, setAddress ] = useState(data?.client?.address);
   const [ phoneNumber, setPhoneNumber ] = useState(data?.client?.phoneNumber);
 
-  const handleUpdateClient = (id: string) => {
-
-    axios.put(`http://localhost:3000/client/${id}`, {
-      name: name,
-      email: email,
-      cep: cep,
-      address: address,
-      phoneNumber: phoneNumber
-    })
-      .then(() => {
-        toast.success('cliente editado com sucesso');
-      })
-      .catch(error => {
-        return error;
-      });
-  };
   useEffect(() => {
     if (data && data.client) {
       setName(data.client.name || '');
@@ -154,7 +138,7 @@ export const ClientIdComponent: React.FC = () => {
                 onChange={e => setAddress(e.target.value)}
               />
               <button onClick={() => setModal(false)}>fechar modal</button>
-              <button onClick={() => handleUpdateClient(String(id))}>salvar alterações</button>
+              <button onClick={() => handleUpdateClient(String(id), name, email, cep,address, phoneNumber)}>salvar alterações</button>
             </div>
           </ContainerUpdateClient>}
       </div>
