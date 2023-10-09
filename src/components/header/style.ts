@@ -7,7 +7,7 @@ export const HeaderStyle = styled.header`
   height: 7vh;
   width: 100%;
   background-color: #fff;
-  border-bottom: 1px solid gainsboro;
+  border-bottom: 1px solid #f4f4f4;
 
   div p{
     font-size:1rem;

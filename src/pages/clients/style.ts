@@ -49,13 +49,17 @@ export const ContainerPagination = styled.div`
 `;
 export const Container = styled.div`
   min-height: 10vh;
+  position: sticky;
+  display: flex;
+  top: 0;
+  background-color:#fff;
 `;
 export const SubContainer = styled.div`
   display: flex;
-  margin: 20px auto;
   align-items: center;
   justify-content:space-evenly;
   width: 99vw;
+  border-bottom: 1px solid #f4f4f4;
   div p{
     margin-left: 30px;
     font-family: 'Inter';
@@ -86,4 +90,14 @@ export const ButtonRegisterAClient = styled.button`
   font-family: roboto;
   font-size: 0.9rem;
   border:none;
+`;
+export const ClientsNotFound = styled.div`
+ display: flex;
+ align-items:center;
+ justify-content: center;
+ min-height: 40vw;
+
+ p{
+  font-size: 1.3rem;
+ }
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { ContainerPagination, Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient } from './style';
+import { ContainerPagination, Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient, ClientsNotFound } from './style';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
@@ -27,12 +27,12 @@ export const Clients: React.FC = () => {
 
   return (
     <>
-      {paginatedClients?.length == 0 || undefined ? <div>voce não tem nehum cliente cadastrado, <Link to='/dashboard/client/new'>registrar</Link></div> :
+      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado, <Link to='/dashboard/client/new'>registrar</Link></p></ClientsNotFound> :
         <div style={{ minHeight: '100vh' }}>
           <Container>
             <SubContainer>
               <div>
-                <p>dashboard ynex</p>
+                <p>Dashboard ynex</p>
               </div>
               <div>
                 <Search placeholder='search clients'/>
