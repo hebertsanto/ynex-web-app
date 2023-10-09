@@ -5,7 +5,7 @@ import { FormData } from '../../core/types';
 import { Button, Container, Form, FormContainer, TitleComponent } from './style';
 import { Link } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import { createUser } from '../../core/functions/createUser';
+import { createUser } from '../../core/functions/createClient';
 import { emailRegex } from '../../core/utils/emailRegex';
 
 export const AddClient: React.FC = () => {

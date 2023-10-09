@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonClient, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
-import { handleDeleteClient } from '../../core/functions/deleteUser';
-import { handleUpdateClient } from '../../core/functions/addClient';
+import { handleDeleteClient } from '../../core/functions/deleteClient';
+import { handleUpdateClient } from '../../core/functions/updateClient';
 
 export const ClientIdComponent: React.FC = () => {
 
   const navigate = useNavigate();
   const { id } = useParams();
   const [ modal, setModal ]  = useState(false);
-  const [ modalDelete, setModalDelete ]  = useState(false);
+  const [ closeModalDelete, setCloseModalDelete ]  = useState(false);
 
   const { data } = useQuery([ 'clientI', id ], async () => {
     return await axios.get(`http://localhost:3000/client/${id}`)
@@ -37,13 +37,6 @@ export const ClientIdComponent: React.FC = () => {
     }
   }, [ data ] );
 
-  const handleAtivateModal = () => {
-    setModal(true);
-  };
-  const handleAtivateModalDelete = () => {
-    setModalDelete(true);
-  };
-
   return (
     <ContainerClientId >
       <div>
@@ -62,7 +55,7 @@ export const ClientIdComponent: React.FC = () => {
           <ButtonContainer>
             <div>
               <Button
-                onClick={() => handleAtivateModal()}
+                onClick={() => setModal(true)}
                 bgColor="rgba(24, 120, 231, 0.8)"
                 hover="rgba(49, 137, 238, 0.8)"
               >
@@ -71,7 +64,7 @@ export const ClientIdComponent: React.FC = () => {
             </div>
             <div>
               <Button
-                onClick={() => handleAtivateModalDelete()}
+                onClick={() => setCloseModalDelete(true)}
                 bgColor="rgb(220, 38, 38)"
                 hover="rgba(212, 0, 0, 0.788)"
               >
@@ -80,7 +73,7 @@ export const ClientIdComponent: React.FC = () => {
             </div>
           </ButtonContainer>
         </ContainerInfoClientId>
-        {modalDelete &&
+        {closeModalDelete &&
           <ModalDeleteStyle>
             <ContentModalDelete>
               <h3>tem certeza que deseja excluir esse cliente? </h3>
@@ -98,7 +91,7 @@ export const ClientIdComponent: React.FC = () => {
                 </ButtonClient>
                 <ButtonClient
                   bgColor='#e22b13'
-                  onClick={() => setModalDelete(false)}>
+                  onClick={() => setCloseModalDelete(false)}>
                   cancelar
                 </ButtonClient>
               </div>
