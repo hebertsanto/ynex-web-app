@@ -36,7 +36,7 @@ export const Clients: React.FC = () => {
 
   return (
     <>
-      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado com o usuario de id {id}, <Link to='/dashboard/client/new'>registrar</Link></p></ClientsNotFound> :
+      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado com o usuario de id {id}, <Link to={`/userId/${id}/client/new`}>registrar</Link></p></ClientsNotFound> :
         <div style={{ minHeight: '100vh' }}>
           <Container>
             <SubContainer>
@@ -46,7 +46,7 @@ export const Clients: React.FC = () => {
               <div>
                 <Search placeholder='search clients'/>
                 <ButtonRegisterAClient
-                  onClick={() => navigate('/dashboard/client/new')}
+                  onClick={() => navigate(`/userId/${id}/client/new`)}
                 >
                   register client
                 </ButtonRegisterAClient>

@@ -3,11 +3,19 @@ import { toast } from 'react-toastify';
 import { Navigate } from '../types';
 
 export const handleDeleteClient = (id: string | undefined, navigate : Navigate) => {
+
+  const userId = localStorage.getItem('userId');
+  const token = localStorage.getItem('userToken');
+
   axios
-    .delete(`http://localhost:3000/client/${id}`)
+    .delete(`http://localhost:5000/client/${id}`, {
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(() => {
       toast.success('client deleted successfully');
-      navigate('/dashboard');
+      navigate(`/userId/${userId}`);
       return;
     })
     .catch( error => {

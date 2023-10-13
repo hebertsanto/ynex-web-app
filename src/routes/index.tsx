@@ -15,12 +15,12 @@ export const AppRoutes: React.FC = () => {
           path='/'
           element={<Navigate to='/login' replace />}
         />
+        <Route path='/*' element={<div>page not found</div>} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/' element={<PageDefault />}>
           <Route path='/userId/:id' element={<HomePage />} />
           <Route path='/userId/:id/client/new' element={<AddClient />} />
           <Route path='/userId/:id/client/:id' element={<ClientIdComponent />} />
-          <Route path='*' element={<div>page not found</div>} />
         </Route>
       </Routes>
       <Global />

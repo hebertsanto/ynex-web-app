@@ -1,11 +1,25 @@
 import React from 'react';
 import { HeaderStyle, NavLinks } from './style';
 import Logo from '../../../public/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-export const Header : React.FC = () => {
+export const Header: React.FC = () => {
 
-  return(
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('userId');
+  };
+
+  const token = localStorage.getItem('userToken');
+  useEffect(() => {
+    if(!token){
+      navigate('/login');
+    }
+  }, [ token ]);
+  return (
     <HeaderStyle>
       <div style={{
         display: 'flex',
@@ -22,12 +36,12 @@ export const Header : React.FC = () => {
         <NavLinks>
           <li>
             <Link to="/account">
-               charts
+              charts
             </Link>
           </li>
           <li>
-            <Link to="/account">
-               your accout
+            <Link to="#" onClick={() => logout()}>
+              logout
             </Link>
           </li>
         </NavLinks>
