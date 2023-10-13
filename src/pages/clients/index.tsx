@@ -1,19 +1,20 @@
 import React from 'react';
 import axios from 'axios';
 import { ContainerPagination, Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient, ClientsNotFound } from './style';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
 import { useState } from 'react';
 
 export const Clients: React.FC = () => {
+  const token = localStorage.getItem('userToken');
+  const id = localStorage.getItem('userId');
 
-  const { id } = useParams();
   const navigate = useNavigate();
   const { data } = useQuery('clients', async () => {
     return await axios.get(`http://localhost:5000/user/${id}`, {
       headers:{
-        'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiQyYiQxMCR1T1RCQldGTVg4MlJUenpSWjVVcU11S0M5b0h4N3pTSEJRdUhzS0llOWZQNWlCMDZpZUIveSIsImlhdCI6MTY5NzE2MTc3MywiZXhwIjoxNjk3MjQ4MTczfQ.-ZzSkwTXzDrtCBkrSwCW4vzaf7HfgRwtRjB_yFOSw7U'
+        'Authorization' : `Bearer ${token}`
       }
     })
       .then(res => {
@@ -32,11 +33,11 @@ export const Clients: React.FC = () => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedClients = data?.usersClients?.slice(startIndex, endIndex) || [];
+  const paginatedClients = data?.clientsUser?.slice(startIndex, endIndex) || [];
 
   return (
     <>
-      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado com o usuario de id {id}, <Link to={`/userId/${id}/client/new`}>registrar</Link></p></ClientsNotFound> :
+      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>nenhum cliente., <Link to={`/userId/${id}/client/new`}>registrar</Link></p></ClientsNotFound> :
         <div style={{ minHeight: '100vh' }}>
           <Container>
             <SubContainer>
@@ -58,22 +59,22 @@ export const Clients: React.FC = () => {
               <thead>
                 <tr>
                   <th>
-                    name
+                    nome
                   </th>
                   <th>
                     email
                   </th>
                   <th>
-                    phone
+                    telefone
                   </th>
                   <th>
                     cep
                   </th>
                   <th>
-                    adress
+                    endereço
                   </th>
                   <th>
-                    actions
+                    ações
                   </th>
                 </tr>
               </thead>
@@ -90,7 +91,7 @@ export const Clients: React.FC = () => {
                         <td>{client.cep}</td>
                         <td>{client.address}</td>
                         <td>
-                          <button onClick={() => navigate(`client/${client._id}`)}>actions</button>
+                          <button onClick={() => navigate(`/user/client/${client._id}`)}>actions</button>
                         </td>
                       </tr>
                     </>

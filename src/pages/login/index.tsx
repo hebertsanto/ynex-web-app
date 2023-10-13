@@ -35,7 +35,7 @@ export const LoginPage: React.FC = () => {
             const userId = res.data.user._id;
             localStorage.setItem('userId', userId);
             localStorage.setItem('userToken', token);
-            navigate(`/userId/${userId}`);
+            navigate('/user');
           }
         })
         .catch(err => console.error(err));
@@ -44,11 +44,12 @@ export const LoginPage: React.FC = () => {
       console.log(error);
     }
   };
+
   const token = localStorage.getItem('userToken');
-  const userId = localStorage.getItem('userId');
+
   useEffect(() => {
     if(token){
-      navigate(`/userId/${userId}`);
+      navigate('/user');
     }
   }, []);
 

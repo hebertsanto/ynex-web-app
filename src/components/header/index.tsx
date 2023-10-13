@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 
 export const Header: React.FC = () => {
 
-
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem('userToken');
@@ -37,6 +36,11 @@ export const Header: React.FC = () => {
           <li>
             <Link to="/account">
               charts
+            </Link>
+          </li>
+          <li>
+            <Link to="/user/account">
+              account
             </Link>
           </li>
           <li>
