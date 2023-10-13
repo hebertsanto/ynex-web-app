@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteClient';
 import { handleUpdateClient } from '../../core/functions/updateClient';
@@ -12,9 +12,13 @@ export const ClientIdComponent: React.FC = () => {
   const { id } = useParams();
   const [ modal, setModal ] = useState(false);
   const [ closeModalDelete, setCloseModalDelete ] = useState(false);
-
+  const token = localStorage.getItem('userToken');
   const { data } = useQuery([ 'clientI', id ], async () => {
-    return await axios.get(`http://localhost:3000/client/${id}`)
+    return await axios.get(`http://localhost:5000/client/${id}`,{
+      headers:{
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(response => response.data)
       .catch(error => {
         return error;
@@ -40,7 +44,6 @@ export const ClientIdComponent: React.FC = () => {
   return (
     <ContainerClientId >
       <div>
-        <Link to='/dashboard'>back to home</Link>
         <Title>clients {'>'} info</Title>
         <ContainerInfoClientId>
           <ContainerDetailsInfo>

@@ -1,17 +1,27 @@
 import React from 'react';
 import axios from 'axios';
 import { ContainerPagination, Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient, ClientsNotFound } from './style';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
 import { useState } from 'react';
 
-
 export const Clients: React.FC = () => {
 
+  const { id } = useParams();
+  const navigate = useNavigate();
   const { data } = useQuery('clients', async () => {
-    return await axios.get('http://localhost:3000/clients')
-      .then(res => res.data)
+    return await axios.get(`http://localhost:5000/user/${id}`, {
+      headers:{
+        'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IiQyYiQxMCR1T1RCQldGTVg4MlJUenpSWjVVcU11S0M5b0h4N3pTSEJRdUhzS0llOWZQNWlCMDZpZUIveSIsImlhdCI6MTY5NzE2MTc3MywiZXhwIjoxNjk3MjQ4MTczfQ.-ZzSkwTXzDrtCBkrSwCW4vzaf7HfgRwtRjB_yFOSw7U'
+      }
+    })
+      .then(res => {
+        if(res.data.msg == 'o token não é mais válido, executar o login novamente.'){
+          //code
+        }
+        return res.data;
+      })
       .catch(error => {
         return error;
       });
@@ -22,12 +32,11 @@ export const Clients: React.FC = () => {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedClients = data?.clients?.slice(startIndex, endIndex) || [];
-  const navigate = useNavigate();
+  const paginatedClients = data?.usersClients?.slice(startIndex, endIndex) || [];
 
   return (
     <>
-      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado, <Link to='/dashboard/client/new'>registrar</Link></p></ClientsNotFound> :
+      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>voce não tem nehum cliente cadastrado com o usuario de id {id}, <Link to='/dashboard/client/new'>registrar</Link></p></ClientsNotFound> :
         <div style={{ minHeight: '100vh' }}>
           <Container>
             <SubContainer>

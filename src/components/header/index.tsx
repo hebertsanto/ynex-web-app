@@ -4,6 +4,7 @@ import Logo from '../../../public/logo.svg';
 import { Link } from 'react-router-dom';
 
 export const Header : React.FC = () => {
+
   return(
     <HeaderStyle>
       <div style={{
@@ -26,7 +27,7 @@ export const Header : React.FC = () => {
           </li>
           <li>
             <Link to="/account">
-               your account
+               your accout
             </Link>
           </li>
         </NavLinks>

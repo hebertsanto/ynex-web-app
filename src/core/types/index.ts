@@ -17,3 +17,10 @@ export type Client = {
  //eslint-disable-next-line
 export type Navigate = (to: string) => void;
 
+export type ButtonStyleProp = {
+    bgColor: string;
+    color: string;
+    border: string;
+    hover?: string;
+    borderHover?: string;
+};
