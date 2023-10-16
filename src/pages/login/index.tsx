@@ -30,13 +30,14 @@ export const LoginPage: React.FC = () => {
         .then(res => {
           if (res.data.msg == 'invalid email or password') {
             toast.error('usuário ou senha invalidos');
-          } else {
-            const token = res.data.token;
-            const userId = res.data.user._id;
-            localStorage.setItem('userId', userId);
-            localStorage.setItem('userToken', token);
-            navigate('/user');
+          } else if (res.data.msg == 'nenhum registro desse email no banco de dados') {
+            return toast.error('email não encontrado na base de dados');
           }
+          const token = res.data.token;
+          const userId = res.data.user._id;
+          localStorage.setItem('userId', userId);
+          localStorage.setItem('userToken', token);
+          navigate('/user');
         })
         .catch(err => console.error(err));
 
@@ -48,7 +49,7 @@ export const LoginPage: React.FC = () => {
   const token = localStorage.getItem('userToken');
 
   useEffect(() => {
-    if(token){
+    if (token) {
       navigate('/user');
     }
   }, []);
