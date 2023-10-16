@@ -11,14 +11,14 @@ export const Clients: React.FC = () => {
   const id = localStorage.getItem('userId');
 
   const navigate = useNavigate();
-  const { data } = useQuery('clients', async () => {
+  const { data, isLoading } = useQuery('clients', async () => {
     return await axios.get(`http://localhost:5000/user/${id}`, {
-      headers:{
-        'Authorization' : `Bearer ${token}`
+      headers: {
+        'Authorization': `Bearer ${token}`
       }
     })
       .then(res => {
-        if(res.data.msg == 'o token não é mais válido, executar o login novamente.'){
+        if (res.data.msg == 'o token não é mais válido, executar o login novamente.') {
           //code
         }
         return res.data;
@@ -37,86 +37,89 @@ export const Clients: React.FC = () => {
 
   return (
     <>
-      {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>nenhum cliente., <Link to={`/userId/${id}/client/new`}>registrar</Link></p></ClientsNotFound> :
-        <div style={{ minHeight: '100vh' }}>
-          <Container>
-            <SubContainer>
-              <div>
-                <p>Dashboard ynex</p>
-              </div>
-              <div>
-                <Search placeholder='search clients'/>
-                <ButtonRegisterAClient
-                  onClick={() => navigate(`/userId/${id}/client/new`)}
-                >
-                  register client
-                </ButtonRegisterAClient>
-              </div>
-            </SubContainer>
-          </Container>
-          <TableClientsContainer>
-            <Table>
-              <thead>
-                <tr>
-                  <th>
-                    nome
-                  </th>
-                  <th>
-                    email
-                  </th>
-                  <th>
-                    telefone
-                  </th>
-                  <th>
-                    cep
-                  </th>
-                  <th>
-                    endereço
-                  </th>
-                  <th>
-                    ações
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {paginatedClients.length > 0 &&
-                  paginatedClients.map((client: Client) =>
-                    <>
-                      <tr key={client._id}>
-                        <td>
-                          {client.name}
-                        </td>
-                        <td>{client.email}</td>
-                        <td>{client.phoneNumber}</td>
-                        <td>{client.cep}</td>
-                        <td>{client.address}</td>
-                        <td>
-                          <button onClick={() => navigate(`/user/client/${client._id}`)}>actions</button>
-                        </td>
-                      </tr>
-                    </>
-                  )}
-              </tbody>
-            </Table>
-            <ContainerPagination>
-              <button
-                onClick={() => setCurrentPage(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                prev page
-              </button>
-              <span>Página {currentPage}</span>
-              <button
-                disabled={endIndex >= data?.clients?.length}
-                onClick={() => setCurrentPage(currentPage + 1)}
-              >
-                next page
-              </button>
-            </ContainerPagination>
-          </TableClientsContainer>
-        </div>
+      {isLoading ? 'carregando' :
+        <>
+          {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>nenhum cliente., <Link to='/user/client/new'>registrar</Link></p></ClientsNotFound> :
+            <div style={{ minHeight: '100vh' }}>
+              <Container>
+                <SubContainer>
+                  <div>
+                    <p>Dashboard ynex</p>
+                  </div>
+                  <div>
+                    <Search placeholder='pesquise pelo nome' />
+                    <ButtonRegisterAClient
+                      onClick={() => navigate('/user/client/new')}
+                    >
+                      register client
+                    </ButtonRegisterAClient>
+                  </div>
+                </SubContainer>
+              </Container>
+              <TableClientsContainer>
+                <Table>
+                  <thead>
+                    <tr>
+                      <th>
+                        nome
+                      </th>
+                      <th>
+                        email
+                      </th>
+                      <th>
+                        telefone
+                      </th>
+                      <th>
+                        cep
+                      </th>
+                      <th>
+                        endereço
+                      </th>
+                      <th>
+                        ações
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {paginatedClients.length > 0 &&
+                      paginatedClients.map((client: Client) =>
+                        <>
+                          <tr key={client._id}>
+                            <td>
+                              {client.name}
+                            </td>
+                            <td>{client.email}</td>
+                            <td>{client.phoneNumber}</td>
+                            <td>{client.cep}</td>
+                            <td>{client.address}</td>
+                            <td>
+                              <button onClick={() => navigate(`/user/client/${client._id}`)}>actions</button>
+                            </td>
+                          </tr>
+                        </>
+                      )}
+                  </tbody>
+                </Table>
+                <ContainerPagination>
+                  <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    prev page
+                  </button>
+                  <span>Página {currentPage}</span>
+                  <button
+                    disabled={endIndex >= data?.clients?.length}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                  >
+                    next page
+                  </button>
+                </ContainerPagination>
+              </TableClientsContainer>
+            </div>
+          }
+        </>
       }
-
     </>
   );
 };

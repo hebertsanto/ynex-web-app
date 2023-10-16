@@ -3,8 +3,10 @@ import { FormData } from '../types';
 import { toast } from 'react-toastify';
 
 export const createUser = async (data: FormData) => {
+
   const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('userToken');
+
   return await axios
     .post('http://localhost:5000/clients', {
       name: data.name,
@@ -19,12 +21,11 @@ export const createUser = async (data: FormData) => {
       }
     })
     .then(res => {
-      if (res.data) {
-        toast.success('client add success');
+      if (res.data.msg == 'email already exists') {
         console.log(res.data);
-      } else {
-        toast.error('something went wrong');
+        return toast.error('este email já esta sendo ultilizado por algum cliente');
       }
+      toast.success('cliente adicionado com sucesso');
     })
     .catch( error => {
       return error;

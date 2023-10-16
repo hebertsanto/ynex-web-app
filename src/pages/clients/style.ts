@@ -17,7 +17,8 @@ export const Table = styled.table`
   text-transform: capitalize;
   padding: 15px;
   font-weight: bold;
-  border-bottom: 1px solid #d3d3d3;
+  border-bottom: 1px solid #f5f5f5;
+  background-color:#f5f5f5;
   color: rgba(20, 20, 20,908)
  }
   td{

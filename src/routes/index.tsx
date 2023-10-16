@@ -20,7 +20,7 @@ export const AppRoutes: React.FC = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/' element={<PageDefault />}>
           <Route path='/user/' element={<HomePage />} />
-          <Route path='/user/:id/client/new' element={<AddClient />} />
+          <Route path='/user/client/new' element={<AddClient />} />
           <Route path='/user/client/:id' element={<ClientIdComponent />} />
           <Route path='/user/account' element={<Account/>} />
         </Route>

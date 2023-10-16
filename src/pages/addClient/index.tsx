@@ -25,10 +25,10 @@ export const AddClient: React.FC = () => {
     <Container>
       <Link to="/">back to home</Link>
       <FormContainer>
-        <TitleComponent>register a new client</TitleComponent>
+        <TitleComponent>registre um novo cliente</TitleComponent>
         <Form onSubmit={handleSubmit(handleAddClient)}>
           <div>
-            <label htmlFor="name">name</label>
+            <label htmlFor="name">nome</label>
             <input
               {...register('name', { required: true })}
               type="text"
@@ -63,7 +63,7 @@ export const AddClient: React.FC = () => {
             {errors.cep?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
           <div>
-            <label htmlFor="address">adress</label>
+            <label htmlFor="address">endereço</label>
             <input
               {...register('address', { required: true })}
               type="text"
@@ -73,7 +73,7 @@ export const AddClient: React.FC = () => {
             {errors.address?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
           <div>
-            <label htmlFor="phoneNumber">phone number</label>
+            <label htmlFor="phoneNumber">telefone</label>
             <input
               {...register('phoneNumber', { required: true })}
               type="text"

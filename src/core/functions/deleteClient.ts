@@ -4,7 +4,6 @@ import { Navigate } from '../types';
 
 export const handleDeleteClient = (id: string | undefined, navigate : Navigate) => {
 
-  const userId = localStorage.getItem('userId');
   const token = localStorage.getItem('userToken');
 
   axios
@@ -15,7 +14,7 @@ export const handleDeleteClient = (id: string | undefined, navigate : Navigate) 
     })
     .then(() => {
       toast.success('client deleted successfully');
-      navigate(`/userId/${userId}`);
+      navigate('/user');
       return;
     })
     .catch( error => {
