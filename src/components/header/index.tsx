@@ -34,16 +34,6 @@ export const Header: React.FC = () => {
       <div>
         <NavLinks>
           <li>
-            <Link to="/account">
-              charts
-            </Link>
-          </li>
-          <li>
-            <Link to="/user/account">
-              your account
-            </Link>
-          </li>
-          <li>
             <Link to="#" onClick={() => logout()}>
               logout
             </Link>

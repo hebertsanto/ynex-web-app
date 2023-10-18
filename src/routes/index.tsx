@@ -6,7 +6,6 @@ import { ClientIdComponent } from '../pages/clientid';
 import { AddClient } from '../pages/addClient';
 import React from 'react';
 import { LoginPage } from '../pages/login';
-import { Account } from '../pages/account';
 
 export const AppRoutes: React.FC = () => {
   return (
@@ -22,7 +21,6 @@ export const AppRoutes: React.FC = () => {
           <Route path='/user/' element={<HomePage />} />
           <Route path='/user/client/new' element={<AddClient />} />
           <Route path='/user/client/:id' element={<ClientIdComponent />} />
-          <Route path='/user/account' element={<Account/>} />
         </Route>
       </Routes>
       <Global />
