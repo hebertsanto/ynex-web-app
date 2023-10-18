@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
 import { useState } from 'react';
+import { Loading } from '../../components/loading';
 
 export const Clients: React.FC = () => {
   const token = localStorage.getItem('userToken');
@@ -37,7 +38,7 @@ export const Clients: React.FC = () => {
 
   return (
     <>
-      {isLoading ? 'carregando' :
+      {isLoading ? <Loading /> :
         <>
           {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>nenhum cliente., <Link to='/user/client/new'>registrar</Link></p></ClientsNotFound> :
             <div style={{ minHeight: '100vh' }}>

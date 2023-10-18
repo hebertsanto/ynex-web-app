@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
           </li>
           <li>
             <Link to="/user/account">
-              account
+              your account
             </Link>
           </li>
           <li>
