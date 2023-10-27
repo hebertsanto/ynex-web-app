@@ -54,6 +54,9 @@ export const SubForm = styled.div`
     justify-content: center;
     width: 80vw;
  }
+ p{
+   margin-top: 20px;
+ }
 `;
 export const HeaderForm = styled.div`
  p{

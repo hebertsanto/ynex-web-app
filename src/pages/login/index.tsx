@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Form, HeaderForm, SubForm, ContainerForm } from './style';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Error } from '../../components/error';
 import { emailIsRequired, emailIsValid, passwordIsRequired, passwordLength } from '../../components/error/messages';
 import axios from 'axios';
@@ -39,7 +39,9 @@ export const LoginPage: React.FC = () => {
           localStorage.setItem('userToken', token);
           navigate('/user');
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+          console.log(err);
+        });
 
     } catch (error) {
       console.log(error);
@@ -99,23 +101,13 @@ export const LoginPage: React.FC = () => {
             color="#fafafa">
             Entrar
           </Button>
-          <span
-            style={{
-              fontSize: '0.9rem'
-            }}
-          >novo por aqui?</span>
-          <Link to='/auth/register' style={{ display: 'inline' }}>
-            <Button
-              color="black"
-              type='submit'
-              border='1px solid gainsboro'
-              bgColor="#fff"
-              borderHover="1px solid black"
-              hover='#ffffff'
-            >
-              Registrar uma conta
-            </Button>
-          </Link>
+          <p>
+            caso você esteja interessado em testar o funcionamento do sistema
+            entre em contato comigo
+            <span>
+              <strong> hebertsantosdeveloper@gmail.com</strong>
+            </span>
+          </p>
         </SubForm>
       </Form>
     </ContainerForm>
