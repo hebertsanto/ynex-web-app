@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import { ContainerPagination, Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient, ClientsNotFound } from './style';
-import { Link, useNavigate } from 'react-router-dom';
+import { Table, TableClientsContainer, Container, Search, SubContainer, ButtonRegisterAClient } from './style';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { Client } from '../../core/types';
-import { useState } from 'react';
 import { Loading } from '../../components/loading';
 
 export const Clients: React.FC = () => {
+
   const token = localStorage.getItem('userToken');
   const id = localStorage.getItem('userId');
 
@@ -29,96 +29,73 @@ export const Clients: React.FC = () => {
       });
   });
 
-  const [ currentPage, setCurrentPage ] = useState(1);
-  const itemsPerPage = 8;
-
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const paginatedClients = data?.clientsUser?.slice(startIndex, endIndex) || [];
-
   return (
     <>
       {isLoading ? <Loading /> :
         <>
-          {paginatedClients?.length == 0 || undefined ? <ClientsNotFound><p>nenhum cliente., <Link to='/user/client/new'>registrar</Link></p></ClientsNotFound> :
-            <div style={{ minHeight: '100vh' }}>
-              <Container>
-                <SubContainer>
-                  <div>
-                    <p>Dashboard ynex</p>
-                  </div>
-                  <div>
-                    <Search placeholder='pesquise pelo nome' />
-                    <ButtonRegisterAClient
-                      onClick={() => navigate('/user/client/new')}
-                    >
-                      register client
-                    </ButtonRegisterAClient>
-                  </div>
-                </SubContainer>
-              </Container>
-              <TableClientsContainer>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th>
-                        nome
-                      </th>
-                      <th>
-                        email
-                      </th>
-                      <th>
-                        telefone
-                      </th>
-                      <th>
-                        cep
-                      </th>
-                      <th>
-                        endereço
-                      </th>
-                      <th>
-                        ações
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {paginatedClients.length > 0 &&
-                      paginatedClients.map((client: Client) =>
-                        <>
-                          <tr key={client._id}>
-                            <td>
-                              {client.name}
-                            </td>
-                            <td>{client.email}</td>
-                            <td>{client.phoneNumber}</td>
-                            <td>{client.cep}</td>
-                            <td>{client.address}</td>
-                            <td>
-                              <button onClick={() => navigate(`/user/client/${client._id}`)}>actions</button>
-                            </td>
-                          </tr>
-                        </>
-                      )}
-                  </tbody>
-                </Table>
-                <ContainerPagination>
-                  <button
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
+          <div style={{ minHeight: '100vh' }}>
+            <Container>
+              <SubContainer>
+                <div>
+                  <p>Dashboard ynex</p>
+                </div>
+                <div>
+                  <Search placeholder='pesquise pelo nome' />
+                  <ButtonRegisterAClient
+                    onClick={() => navigate('/dashboard/contribuidor/novo')}
                   >
-                    prev page
-                  </button>
-                  <span>Página {currentPage}</span>
-                  <button
-                    disabled={endIndex >= data?.clients?.length}
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                  >
-                    next page
-                  </button>
-                </ContainerPagination>
-              </TableClientsContainer>
-            </div>
-          }
+                    adicionar novo contribuidor
+                  </ButtonRegisterAClient>
+                </div>
+              </SubContainer>
+            </Container>
+            <TableClientsContainer>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>
+                      nome
+                    </th>
+                    <th>
+                      email
+                    </th>
+                    <th>
+                      telefone
+                    </th>
+                    <th>
+                      cep
+                    </th>
+                    <th>
+                      endereço
+                    </th>
+                    <th>
+                      execute ações
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.clientsUser?.length > 0 &&
+                    data?.clientsUser.map((client: Client) =>
+                      <>
+                        <tr key={client._id}>
+                          <td>
+                            {client.name}
+                          </td>
+                          <td>{client.email}</td>
+                          <td>{client.phoneNumber}</td>
+                          <td>{client.cep}</td>
+                          <td>{client.address}</td>
+                          <td>
+                            <button onClick={() => navigate(`/dashboard/contribuidor/${client._id}?name=${client.name.replace(/ /g, '-')}`)}>execute</button>
+                          </td>
+                        </tr>
+                      </>
+                    )}
+                </tbody>
+              </Table>
+            </TableClientsContainer>
+          </div>
+
         </>
       }
     </>

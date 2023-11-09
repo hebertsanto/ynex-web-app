@@ -29,13 +29,13 @@ export const Header: React.FC = () => {
           alt="logo image"
           width={35}
         />
-        <p>ynex.</p>
+        <p>ynex rh</p>
       </div>
       <div>
         <NavLinks>
           <li>
             <Link to="#" onClick={() => logout()}>
-              logout
+              sair do sistema
             </Link>
           </li>
         </NavLinks>

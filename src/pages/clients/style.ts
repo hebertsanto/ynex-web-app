@@ -14,18 +14,18 @@ export const Table = styled.table`
  border-bottom: 1px solid gainsboro;
  border-collapse: collapse;
  th{
-  text-transform: capitalize;
   padding: 15px;
-  font-weight: bold;
+  font-size:1rem;
   border-bottom: 1px solid #f5f5f5;
-  background-color:#f5f5f5;
-  color: rgba(20, 20, 20,908)
+  background-color:rgba(245, 245, 245,0.8);
+  color: rgba(60, 60, 60,908);
  }
   td{
     background-color: #fff;
     border-bottom: 1px solid #f3f3f3;;
     color: rgba(100,100,100,890);
     padding: 10px;
+    font-size:0.9rem;
   }
   td button   {
     padding: 8px;
