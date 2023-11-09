@@ -110,6 +110,9 @@ export const LoginPage: React.FC = () => {
           </p>
         </SubForm>
       </Form>
+      <div style={{ width: '50%', height: '100vh' }}>
+        <img  style={{ objectFit: 'cover',height:'100%', width: '100%' }} src="https://media.istockphoto.com/id/1428421517/pt/foto/human-resources-and-management-employees-must-complete-the-online-survey-form-answer-the-test.jpg?s=2048x2048&w=is&k=20&c=Up2JP8_4x7MZpNH3n3dNSCn__xl3RUjxoaV8bqMAgA4=" alt="" />
+      </div>
     </ContainerForm>
   );
 };

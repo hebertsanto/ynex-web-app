@@ -19,6 +19,7 @@ export const AppRoutes: React.FC = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/' element={<PageDefault />}>
           <Route path='/dashboard/' element={<HomePage />} />
+          <Route path='/dashboard/contribuidor/*' element={<Navigate to='/dashboard' replace />}/>
           <Route path='/dashboard/contribuidor/novo' element={<AddClient />} />
           <Route path='/dashboard/contribuidor/:id' element={<ClientIdComponent />} />
         </Route>

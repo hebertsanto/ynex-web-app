@@ -3,7 +3,7 @@ import { ButtonStyleProp } from '../../core/types';
 
 export const Form = styled.form`
 padding-top: 10vh;
-height:60vh;
+height:auto;
 width:50%;
 margin-top: 10vh;
  label{
@@ -47,7 +47,6 @@ export const SubForm = styled.div`
  width: 40vw;
  height: 70vh;
  padding-left: 40px ;
-
  @media (max-width: 1000px){
     padding: 0px;
     height: auto;
@@ -98,7 +97,7 @@ export const Button = styled.button<ButtonStyleProp>`
 
 
 export const ContainerForm = styled.section`
-   width: 100vw;
+   width: 99vw;
    height: auto;
    display: flex;
    justify-content: center;
