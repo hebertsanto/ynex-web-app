@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Button, ButtonContainer, ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Button,ContainerClientId, ContainerDetailsInfo, ContainerInfoClientId, ContainerUpdateClient, ContentModalDelete, ModalDeleteStyle, Title } from './style';
 import { handleDeleteClient } from '../../core/functions/deleteClient';
 import { handleUpdateClient } from '../../core/functions/updateClient';
 
@@ -47,36 +47,20 @@ export const ClientIdComponent: React.FC = () => {
         <Title>clients {'>'} info</Title>
         <ContainerInfoClientId>
           <ContainerDetailsInfo>
+            <h2>informações sobre o colaborador {data?.client?.name}</h2>
             <p>
-              nome: {data?.client?.name}
+              nome completo: {data?.client?.name}
             </p>
+            <p>cargo/função :</p>
             <p>email : {data?.client?.email}</p>
             <p>phone : {data?.client?.phoneNumber}</p>
             <p>address : {data?.client?.address}</p>
             <p>cep : {data?.client?.cep}</p>
+            <p>cpf :</p>
+            <p>rg :</p>
+            <p>contratado em : </p>
+            <Link to="#">ver curriculo do colaborador</Link>
           </ContainerDetailsInfo>
-          <ButtonContainer>
-            <div>
-              <Button
-                width='100%'
-                onClick={() => setModal(true)}
-                bgColor="rgba(24, 120, 231, 0.8)"
-                hover="rgba(49, 137, 238, 0.8)"
-              >
-                edit this client
-              </Button>
-            </div>
-            <div>
-              <Button
-                width='100%'
-                onClick={() => setCloseModalDelete(true)}
-                bgColor="rgb(220, 38, 38)"
-                hover="rgba(212, 0, 0, 0.788)"
-              >
-                Delete this client
-              </Button>
-            </div>
-          </ButtonContainer>
         </ContainerInfoClientId>
         {closeModalDelete &&
           <ModalDeleteStyle>

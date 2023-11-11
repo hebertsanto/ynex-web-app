@@ -25,7 +25,7 @@ export const AddClient: React.FC = () => {
     <Container>
       <Link to="/">back to home</Link>
       <FormContainer>
-        <TitleComponent>registre um novo cliente</TitleComponent>
+        <TitleComponent>registrar colaborador</TitleComponent>
         <Form onSubmit={handleSubmit(handleAddClient)}>
           <div>
             <label htmlFor="name">nome</label>
@@ -81,6 +81,34 @@ export const AddClient: React.FC = () => {
               placeholder="type a phone number"
             />
             {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
+          </div>
+          <br/>
+          <hr></hr>
+          <p>seção documentos pessoais</p>
+          <div>
+            <label htmlFor="phoneNumber">cpf</label>
+            <input
+              {...register('phoneNumber', { required: true })}
+              type="text"
+              name="phoneNumber"
+              placeholder="type a phone number"
+            />
+            {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
+          </div>
+          <div>
+            <label htmlFor="phoneNumber">rg</label>
+            <input
+              {...register('phoneNumber', { required: true })}
+              type="text"
+              name="phoneNumber"
+              placeholder="type a phone number"
+            />
+            {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
+          </div>
+          <p>formaçao do candidado</p>
+          <div>
+            <label htmlFor="#">curriculo do candidato</label>
+            <input type="file" />
           </div>
           <Button
             disabled={mutation.isLoading}

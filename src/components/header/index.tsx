@@ -38,6 +38,11 @@ export const Header: React.FC = () => {
               sair do sistema
             </Link>
           </li>
+          <li>
+            <Link to="#" onClick={() => logout()}>
+              relatórios
+            </Link>
+          </li>
         </NavLinks>
       </div>
     </HeaderStyle>

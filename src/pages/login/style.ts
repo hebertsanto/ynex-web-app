@@ -4,7 +4,7 @@ import { ButtonStyleProp } from '../../core/types';
 export const Form = styled.form`
 padding-top: 10vh;
 height:auto;
-width:50%;
+padding: 10px;
 margin-top: 10vh;
  label{
     font-family: 'Inter', sans-serif;
@@ -18,8 +18,8 @@ margin-top: 10vh;
  }
  input{
      display: block;
-     margin: 5px;
-     width: 100%;
+     width: 97%;
+    margin-left: 5px;
      height:45px;
      font-size: 0.8rem;
      padding-left: 10px;
@@ -44,9 +44,11 @@ margin-top: 10vh;
 `;
 
 export const SubForm = styled.div`
- width: 40vw;
- height: 70vh;
- padding-left: 40px ;
+ width: 37vw;
+ border: 1px solid rgba(230,230,230,890);
+ border-radius: 5px;
+ height: 50vh;
+ box-shadow: 7px 8px 9px rgba(208, 208, 208, 0.8);
  @media (max-width: 1000px){
     padding: 0px;
     height: auto;
@@ -59,7 +61,7 @@ export const SubForm = styled.div`
 `;
 export const HeaderForm = styled.div`
  p{
-   margin-left:5px;
+   text-align: center;
    margin-top: 8px;
    margin-bottom: 10px;
    font-size: 2.45rem;
@@ -76,7 +78,8 @@ export const Button = styled.button<ButtonStyleProp>`
     border: none;
     font-size: 1rem;
     font-family: 'Inter', sans-serif;
-    width: 100%;
+    width: 97%;
+    margin-left: 5px;
     height:50px;
     background-color: ${props => props.bgColor};
     color: ${props => props.color};

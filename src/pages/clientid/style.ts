@@ -9,10 +9,14 @@ export const ContainerClientId = styled.div`
 export const ContainerInfoClientId  = styled.div`
  width: 35%;
  padding: 20px;
- height: 70vh;
- margin-left: 10px;
+ min-height: 70vh;
+ margin: 0 auto;
  box-shadow: 4px 2px 4px rgba(220,220,220, 998);
  background-color: #fff;
+
+ h2{
+  font-family: 'inter', sans-serif;
+ }
 `;
 export const Title = styled.p`
  margin-left: 20px;
@@ -23,7 +27,7 @@ export const Title = styled.p`
 export const ContainerDetailsInfo = styled.div`
 height: 40vh;
  p{
-    font-size:1.3rem;
+    font-size:1rem;
     display: block;
     margin-top: 20px;
  }

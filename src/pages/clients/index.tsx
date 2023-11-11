@@ -49,6 +49,7 @@ export const Clients: React.FC = () => {
                 </div>
               </SubContainer>
             </Container>
+            colaboradores
             <TableClientsContainer>
               <Table>
                 <thead>
@@ -86,7 +87,7 @@ export const Clients: React.FC = () => {
                           <td>{client.cep}</td>
                           <td>{client.address}</td>
                           <td>
-                            <button onClick={() => navigate(`/dashboard/contribuidor/${client._id}?name=${client.name.replace(/ /g, '-')}`)}>execute</button>
+                            <button onClick={() => navigate(`/dashboard/contribuidor/${client._id}?name=${client.name.replace(/ /g, '-')}`)}>ver todas informações</button>
                           </td>
                         </tr>
                       </>

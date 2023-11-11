@@ -21,7 +21,7 @@ div{
 }
  div input{
     width: 100%;
-    height: 50px;
+    height: 45px;
     border: 1px solid gainsboro;
     outline: none;
     padding-left: 15px;
