@@ -13,6 +13,8 @@ export type Client = {
     email: string
     name: string,
     phoneNumber: string,
+    cpf:string,
+    rg:string
  }
  //eslint-disable-next-line
 export type Navigate = (to: string) => void;

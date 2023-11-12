@@ -33,7 +33,7 @@ export const Clients: React.FC = () => {
     <>
       {isLoading ? <Loading /> :
         <>
-          <div style={{ minHeight: '100vh' }}>
+          <div style={{ minHeight: '100vh', width: '99vw' }}>
             <Container>
               <SubContainer>
                 <div>
@@ -49,48 +49,49 @@ export const Clients: React.FC = () => {
                 </div>
               </SubContainer>
             </Container>
-            colaboradores
             <TableClientsContainer>
               <Table>
                 <thead>
-                  <tr>
-                    <th>
-                      nome
-                    </th>
-                    <th>
-                      email
-                    </th>
-                    <th>
-                      telefone
-                    </th>
-                    <th>
-                      cep
-                    </th>
-                    <th>
-                      endereço
-                    </th>
-                    <th>
-                      execute ações
-                    </th>
-                  </tr>
+                  <th>
+                    nome
+                  </th>
+                  <th>
+                    email
+                  </th>
+                  <th>cpf</th>
+                  <th>rg</th>
+                  <th>
+                    telefone
+                  </th>
+                  <th>
+                    cep
+                  </th>
+                  <th>
+                    endereço
+                  </th>
+
+                  <th>
+                    execute ações
+                  </th>
+
                 </thead>
                 <tbody>
                   {data?.clientsUser?.length > 0 &&
                     data?.clientsUser.map((client: Client) =>
-                      <>
-                        <tr key={client._id}>
-                          <td>
-                            {client.name}
-                          </td>
-                          <td>{client.email}</td>
-                          <td>{client.phoneNumber}</td>
-                          <td>{client.cep}</td>
-                          <td>{client.address}</td>
-                          <td>
-                            <button onClick={() => navigate(`/dashboard/contribuidor/${client._id}?name=${client.name.replace(/ /g, '-')}`)}>ver todas informações</button>
-                          </td>
-                        </tr>
-                      </>
+                      <tr key={client._id}>
+                        <td>
+                          {client.name}
+                        </td>
+                        <td>{client.email}</td>
+                        <td>{client.cpf}</td>
+                        <td>{client.rg}</td>
+                        <td>{client.phoneNumber}</td>
+                        <td>{client.cep}</td>
+                        <td>{client.address}</td>
+                        <td>
+                          <button onClick={() => navigate(`/dashboard/contribuidor/${client._id}?name=${client.name.replace(/ /g, '-')}`)}>ver todas informações</button>
+                        </td>
+                      </tr>
                     )}
                 </tbody>
               </Table>

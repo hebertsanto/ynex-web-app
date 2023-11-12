@@ -3,27 +3,27 @@ import styled from 'styled-components';
 export const TableClientsContainer = styled.div`
   padding:30px;
   margin-top: 5px;
-  width: 90vw;
+  width: 99vw;
 `;
 
 export const Table = styled.table`
  width: 100%;
  font-size: 1rem;
  background-color: #fff;
- text-align: center;
  border-bottom: 1px solid gainsboro;
  border-collapse: collapse;
+ 
  th{
+  text-align: left;
   padding: 15px;
-  font-size:1rem;
-  border-bottom: 1px solid #f5f5f5;
+  font-size:0.9rem;
+  border-bottom: 2px solid rgba(225, 225, 225,0.8);
   background-color:rgba(245, 245, 245,0.8);
   color: rgba(60, 60, 60,908);
  }
   td{
-    background-color: #fff;
     border-bottom: 1px solid #f3f3f3;;
-    color: rgba(100,100,100,890);
+    color: rgba(70,70,70,890);
     padding: 10px;
     font-size:0.9rem;
   }
@@ -32,22 +32,15 @@ export const Table = styled.table`
     cursor: pointer;
     border: none;
   }
-`;
-export const ContainerPagination = styled.div`
- width: 300px;
- margin: 20px auto;
- span{
-  font-size:0.8rem;
- }
- button{
-  margin: 10px;
-  background-color: #fff;
-  border: none;
-  a{
-    font-size:1rem;
+  tr{
+    background-color: #fff;
+    &:hover{
+      background-color: rgba(240,240,240,900);
+    }
+   
   }
- }
 `;
+
 export const Container = styled.div`
   min-height: 10vh;
   position: sticky;
