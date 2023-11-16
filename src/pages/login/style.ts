@@ -19,7 +19,8 @@ margin-top: 10vh;
  input{
      display: block;
      width: 97%;
-    margin-left: 5px;
+     margin-left: 5px;
+     border-radius: 4px;
      height:45px;
      font-size: 0.8rem;
      padding-left: 10px;
@@ -48,6 +49,7 @@ export const SubForm = styled.div`
  border: 1px solid rgba(230,230,230,890);
  border-radius: 5px;
  height: 50vh;
+  padding: 20px;
  box-shadow: 7px 8px 9px rgba(208, 208, 208, 0.8);
  @media (max-width: 1000px){
     padding: 0px;
@@ -81,6 +83,7 @@ export const Button = styled.button<ButtonStyleProp>`
     width: 97%;
     margin-left: 5px;
     height:50px;
+    border-radius: 4px;
     background-color: ${props => props.bgColor};
     color: ${props => props.color};
     cursor: pointer;
