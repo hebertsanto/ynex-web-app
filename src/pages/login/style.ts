@@ -21,7 +21,7 @@ margin-top: 10vh;
      width: 97%;
      margin-left: 5px;
      border-radius: 4px;
-     height:45px;
+     height:40px;
      font-size: 0.8rem;
      padding-left: 10px;
      outline: none;
@@ -33,7 +33,6 @@ margin-top: 10vh;
       transition: 20ms;
         border: 2px solid rgba(0, 0,0, 0.8);
      }
-
  }
  @media (max-width: 1000px){
    display: flex;
@@ -47,7 +46,6 @@ margin-top: 10vh;
 export const SubForm = styled.div`
  width: 37vw;
  border: 1px solid rgba(230,230,230,890);
- border-radius: 5px;
  height: 50vh;
   padding: 20px;
  box-shadow: 7px 8px 9px rgba(208, 208, 208, 0.8);
@@ -58,7 +56,8 @@ export const SubForm = styled.div`
     width: 80vw;
  }
  p{
-   margin-top: 20px;
+   margin-top: 5px;
+   margin-left: 6px;
  }
 `;
 export const HeaderForm = styled.div`
@@ -82,7 +81,7 @@ export const Button = styled.button<ButtonStyleProp>`
     font-family: 'Inter', sans-serif;
     width: 97%;
     margin-left: 5px;
-    height:50px;
+    height:45px;
     border-radius: 4px;
     background-color: ${props => props.bgColor};
     color: ${props => props.color};

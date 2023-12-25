@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
   min-height: 80%;
   background-color: #fff;
   padding: 30px;
-  width: 40vw;
+  width: 50vw;
   box-shadow: 4px 2px 4px rgba(220,220,220, 998);
   margin:1vh auto;
 

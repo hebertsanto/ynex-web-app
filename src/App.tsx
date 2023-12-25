@@ -1,8 +1,9 @@
 import { AppRoutes } from './routes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-function App() {
+import React from 'react';
 
+function App() : React.ReactElement {
   return (
     <>
       <AppRoutes />
