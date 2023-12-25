@@ -12,7 +12,7 @@ export const handleUpdateClient = (
 ) => {
   axios
     .put(
-      `http://localhost:5000/client/${id}`,
+      `http://localhost:5000/colaborator/${id}`,
       {
         name: name,
         email: email,

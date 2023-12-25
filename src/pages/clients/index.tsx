@@ -13,15 +13,13 @@ export const Clients: React.FC = () => {
 
   const navigate = useNavigate();
   const { data, isLoading } = useQuery('clients', async () => {
-    return await axios.get(`http://localhost:5000/user/${id}`, {
+    return await axios.get(`http://localhost:5000/admin/${id}`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
     })
       .then(res => {
-        if (res.data.msg == 'o token não é mais válido, executar o login novamente.') {
-          //code
-        }
+        console.log(res.data);
         return res.data;
       })
       .catch(error => {
@@ -76,8 +74,8 @@ export const Clients: React.FC = () => {
 
                 </thead>
                 <tbody>
-                  {data?.clientsUser?.length > 0 &&
-                    data?.clientsUser.map((client: Client) =>
+                  {data?.usersClients?.length > 0 &&
+                    data?.usersClients.map((client: Client) =>
                       <tr key={client._id}>
                         <td>
                           {client.name}

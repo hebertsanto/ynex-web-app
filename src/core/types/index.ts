@@ -4,6 +4,8 @@ export type FormData = {
     cep: string,
     address: string,
     phoneNumber: string,
+    rg: string,
+    cpf: string,
 }
 
 export type Client = {
@@ -25,4 +27,9 @@ export type ButtonStyleProp = {
     border: string;
     hover?: string;
     borderHover?: string;
+};
+export type inputRegister = {
+    name: string,
+    password: string,
+    email: string,
 };

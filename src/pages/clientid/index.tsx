@@ -13,8 +13,9 @@ export const ClientIdComponent: React.FC = () => {
   const [ modal, setModal ] = useState(false);
   const [ closeModalDelete, setCloseModalDelete ] = useState(false);
   const token = localStorage.getItem('userToken');
-  const { data } = useQuery([ 'clientI', id ], async () => {
-    return await axios.get(`http://localhost:5000/client/${id}`,{
+
+  const { data } = useQuery([ 'clientI', id ], async  () => {
+    return await axios.get(`http://localhost:5000/colaborator/${id}`,{
       headers:{
         'Authorization': `Bearer ${token}`
       }

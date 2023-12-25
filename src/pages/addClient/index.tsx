@@ -23,17 +23,17 @@ export const AddClient: React.FC = () => {
 
   return (
     <Container>
-      <Link to="/">back to home</Link>
+      <Link to="/">voltar ao dashboard</Link>
       <FormContainer>
         <TitleComponent>registrar colaborador</TitleComponent>
         <Form onSubmit={handleSubmit(handleAddClient)}>
           <div>
-            <label htmlFor="name">nome</label>
+            <label htmlFor="name">nome completo</label>
             <input
               {...register('name', { required: true })}
               type="text"
               name="name"
-              placeholder="type name client"
+              placeholder="nome completo"
             />
             {errors.name?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
@@ -47,7 +47,7 @@ export const AddClient: React.FC = () => {
                 })}
               type="email"
               name="email"
-              placeholder="type an email address"
+              placeholder="digite o email do colaborador"
             />
             {errors.email?.type === 'required' && <Error message="campo obrigatório" />}
             {errors.email?.type === 'pattern' && <Error message="insira um email válido" />}
@@ -58,7 +58,7 @@ export const AddClient: React.FC = () => {
               {...register('cep', { required: true })}
               type="text"
               name="cep"
-              placeholder="type your cep"
+              placeholder="cep do colaborador"
             />
             {errors.cep?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
@@ -82,33 +82,25 @@ export const AddClient: React.FC = () => {
             />
             {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
-          <br/>
-          <hr></hr>
-          <p>seção documentos pessoais</p>
           <div>
-            <label htmlFor="phoneNumber">cpf</label>
+            <label htmlFor="cpf">cpf</label>
             <input
-              {...register('phoneNumber', { required: true })}
+              {...register('cpf', { required: true })}
               type="text"
-              name="phoneNumber"
-              placeholder="type a phone number"
+              name="cpf"
+              placeholder="digite o cpf do colaborador"
             />
             {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
           </div>
           <div>
-            <label htmlFor="phoneNumber">rg</label>
+            <label htmlFor="rg">rg</label>
             <input
-              {...register('phoneNumber', { required: true })}
+              {...register('rg', { required: true })}
               type="text"
-              name="phoneNumber"
-              placeholder="type a phone number"
+              name="rg"
+              placeholder="digite o rg do colaborador"
             />
             {errors.phoneNumber?.type === 'required' && <Error message="campo obrigatório" />}
-          </div>
-          <p>formaçao do candidado</p>
-          <div>
-            <label htmlFor="#">curriculo do candidato</label>
-            <input type="file" />
           </div>
           <Button
             disabled={mutation.isLoading}

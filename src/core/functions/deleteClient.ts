@@ -7,14 +7,14 @@ export const handleDeleteClient = (id: string | undefined, navigate : Navigate) 
   const token = localStorage.getItem('userToken');
 
   axios
-    .delete(`http://localhost:5000/client/${id}`, {
+    .delete(`http://localhost:5000/colaborator/${id}`, {
       headers:{
         'Authorization': `Bearer ${token}`
       }
     })
     .then(() => {
       toast.success('client deleted successfully');
-      navigate('/user');
+      navigate('/dashboard');
       return;
     })
     .catch( error => {

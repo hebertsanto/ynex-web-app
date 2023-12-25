@@ -8,12 +8,14 @@ export const createUser = async (data: FormData) => {
   const token = localStorage.getItem('userToken');
 
   return await axios
-    .post('http://localhost:5000/clients', {
+    .post('http://localhost:5000/colaborator', {
       name: data.name,
       email: data.email,
       cep: data.cep,
       address: data.address,
       phoneNumber: data.phoneNumber,
+      cpf: data.cpf,
+      rg: data.rg,
       user:userId
     },{
       headers:{

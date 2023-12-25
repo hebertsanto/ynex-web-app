@@ -6,13 +6,10 @@ import { Error } from '../../components/error';
 import { emailIsRequired, emailIsValid, passwordIsRequired, passwordLength } from '../../components/error/messages';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { inputRegister } from '../../core/types';
 
 export const LoginPage: React.FC = () => {
-  type inputRegister = {
-    name: string,
-    password: string,
-    email: string,
-  };
+
   const navigate = useNavigate();
   const {
     handleSubmit,
@@ -22,29 +19,26 @@ export const LoginPage: React.FC = () => {
 
   const handleSubmitForm: SubmitHandler<inputRegister> = async data => {
     try {
-      //code
-      await axios.post('http://localhost:5000/login', {
+      const req = await axios.post('http://localhost:5000/auth/login', {
         email: data.email,
         password: data.password
-      })
-        .then(res => {
-          if (res.data.msg == 'invalid email or password') {
-            toast.error('usuário ou senha invalidos');
-          } else if (res.data.msg == 'nenhum registro desse email no banco de dados') {
-            return toast.error('email não encontrado na base de dados');
-          }
-          const token = res.data.token;
-          const userId = res.data.user._id;
-          localStorage.setItem('userId', userId);
-          localStorage.setItem('userToken', token);
-          navigate('/dashboard');
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      });
+
+      if (req.data.msg == 'invalid email or password') {
+        return toast.error('invalid email or password');
+      }
+      if(req.data.msg == 'nenhum registro desse email no banco de dados'){
+        return toast.error('email not found on database');
+      }
+
+      const token = req.data.token;
+      const userId = req.data.user._id;
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('userToken', token);
+
 
     } catch (error) {
-      console.log(error);
+      return error;
     }
   };
 
@@ -54,7 +48,7 @@ export const LoginPage: React.FC = () => {
     if (token) {
       navigate('/dashboard');
     }
-  }, []);
+  }, [ token ]);
 
   return (
     <ContainerForm>
@@ -62,7 +56,7 @@ export const LoginPage: React.FC = () => {
         <SubForm>
           <HeaderForm>
             <div>
-              <p>Entrar em ynex rh</p>
+              <p>Entrar no sistema</p>
             </div>
           </HeaderForm>
           <div>
@@ -96,10 +90,10 @@ export const LoginPage: React.FC = () => {
           <Button
             type='submit'
             border="none"
-            bgColor="#111111d3"
-            hover='#000000d2'
+            bgColor="#023ad3d2"
+            hover='#0713bed2'
             color="#fafafa">
-            Entrar
+            log in
           </Button>
           <p>
             caso você esteja interessado em testar o funcionamento do sistema
